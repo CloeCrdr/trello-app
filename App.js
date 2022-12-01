@@ -1,14 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import { TrelloContext } from './context/trello';
+import { TrelloRouter } from './router/trelloRouter';
+import { ConnectRouter } from './router/connectRouter';
+import  {LinearGradient} from 'react-native-linear-gradient'
 
 export default function App() {
+  const [user, setUser] = useState({});
+  const [tableView, setTableView] = useState("");
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    <TrelloContext.Provider value={{user, setUser, tableView, setTableView}}>
+
+      {(user.email) ? <TrelloRouter /> : <ConnectRouter />}  
+
+    </TrelloContext.Provider>
+  )
 }
 
 const styles = StyleSheet.create({
