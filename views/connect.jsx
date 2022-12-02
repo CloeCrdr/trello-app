@@ -1,7 +1,6 @@
-import {  TextInput, Text, Button } from "react-native-paper";
-import {  } from "@rneui/themed";
+import { Text, Button } from "@rneui/themed";
 import { useEffect, useRef, useContext, useState } from "react";
-import { Alert, Keyboard, SafeAreaView, StatusBar, View, Image } from "react-native";
+import { Alert, Keyboard, SafeAreaView, StatusBar, View, Image, ImageBackground, TextInput } from "react-native";
 import { connectUser, connectGoogle } from "../api/connect";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
@@ -26,12 +25,17 @@ export function Connect() {
  
     return (
         <View style={{flex: 1}}>
+            <ImageBackground source={require('../assets/gradientApp.png')} resizeMode="cover"
+            style={{flex: 1}}>
+
             <SafeAreaView style={styles.form}>
-                <Image 
-                    resizeMode='contain' 
-                    style={styles.imageForm}
-                    source={require('../assets/logo.gif')}
-                />
+                <View style={styles.fondImage}>
+                    <Image 
+                        resizeMode='contain' 
+                        style={styles.imageForm}
+                        source={require('../assets/logo.png')}
+                    />
+                </View>
                 <TextInput 
                     placeholder="Login" 
                     keyboardType="email-address" 
@@ -51,13 +55,14 @@ export function Connect() {
                 <Button 
                     onPress={handleClick}
                     mode="elevated"
-                    style={styles.buttonForm}
+                    buttonStyle={styles.buttonForm}
                 >
                     Connexion
                 </Button> 
                 </Text>
                 <StatusBar style="auto" />
             </SafeAreaView>
+            </ImageBackground>
         </View>
     );
 }

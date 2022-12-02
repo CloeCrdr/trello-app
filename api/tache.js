@@ -5,18 +5,20 @@ import { getDownloadURL, getStorage, ref as refB, uploadBytes, } from "firebase/
 
 const database = getDatabase(app);
 
-export function createTache(uid, idColonne, tacheName){
+export function createTache(uid, idTableau, idColonne, tacheName, tacheContent){
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val() ?? [];
-                const indexColonne = data.findIndex(elem => elem.id === idColonne)
-                if (indexColonne == -1) reject({ message: "id non trouvé sur la colonne" })
-                if (!data[indexColonne].taches) data[indexColonne].taches = []
-                data[indexColonne].taches.push({ id: uuidv4(), tache: tacheName, id_colonne: idColonne })
+                const numTb = data.findIndex((elem) => elem.id === idTableau)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
+                if (numCol == -1) reject({ message: "id non trouvé sur la colonne" })
+                if (numTb == -1) reject({ message: "id non trouvé sur le tableau" })
+                if (!data[numTb].colonnes[numCol].taches) data[numTb].colonnes[numCol].taches = []
+                data[numTb].colonnes[numCol].taches.push({ id: uuidv4(), tache: tacheName, content: tacheContent })
                 set(ref(database, 'tableaux/' + uid), data)
-                resolve(data[indexColonne].taches)
+                resolve(data[numTb].colonnes[numCol].taches)
             }).catch(err => {
                 console.log(err);
             });
@@ -27,17 +29,20 @@ export function createTache(uid, idColonne, tacheName){
     })
 }
 
-export function getAllTaches(uid, idColonne){
+export function getAllTaches(uid, idTableau, idColonne){
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
-                const data = snapshot.val() ?? [];
-                const indexColonne = data.findIndex(elem => elem.id === idColonne)
-                if (indexColonne == -1) reject({ message: "id non trouvé dans la colonne" })
-                if (!data[indexColonne].taches) data[indexColonne].taches = []
+                const data = snapshot.val() ?? []; 
+                const numTb = data.findIndex((elem) => elem.id === idTableau)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
+                if (numCol == -1) reject({ message: "id non trouvé sur la colonne" })
+                if (numTb == -1) reject({ message: "id non trouvé sur le tableau" })
 
-                resolve(data[indexColonne].taches)
+                if (!data[numTb].colonnes[numCol].taches) data[numTb].colonnes[numCol].taches = []
+
+                resolve(data[numTb].colonnes[numCol].taches)
             });
         }
         catch (e) {

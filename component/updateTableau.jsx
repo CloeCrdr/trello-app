@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { TextInput, Button } from "react-native-paper";
-import { StatusBar, View } from "react-native";
+import { TextInput } from "react-native-paper";
+import { Button } from "@rneui/themed";
+import { ImageBackground, StatusBar, View } from "react-native";
 import { updateTable } from "../api/table";
 import { TrelloContext } from "../context/trello";
 
@@ -20,10 +21,18 @@ export function UpdateTableau({navigation, route}) {
     }
 
     return (
-        <View>
-            <TextInput value={nameTableau} onChangeText={setNameTableau} />
-            <Button onPress={handleClick}>Modifier le tableau</Button>
-            <StatusBar style="auto" />
-        </View>
+        <>
+             <View style={{flex: 1}}>
+                <ImageBackground 
+                    source={require('../assets/gradientApp.png')} 
+                    resizeMode="cover" 
+                    style={{flex: 1}}
+                >
+                    <TextInput value={nameTableau} onChangeText={setNameTableau} />
+                    <Button onPress={handleClick}>Modifier le tableau</Button>
+                    <StatusBar style="auto" />
+                </ImageBackground>
+            </View>
+        </>
     )
 }

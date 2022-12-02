@@ -46,26 +46,40 @@ export function getAllColonnes(uid, idTable){
     }) 
 }
 
-// export function deleteColonne(uid, idColonne){
-//     return new Promise((resolve, reject) =>{
-//         try {
-//             const reference = ref(database);
-//             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
-//                 const data = snapshot.val()
-//                 data.findIndex((elem) => {
-//                     const data_col = snapshot.val();
-//                     const num = data_col.findIndex((e) => e.id === idColonne)
-//                     data_col.splice(num,1)
-                    
-                
-//                 })
-                
-//             }) 
-//         }
-//         catch(e) {
-//             reject(e)
-//         }
-//     })
-// }
+export function deleteColonne(uid, idTableau, idColonne){
+    return new Promise((resolve, reject) =>{
+        try {
+            const reference = ref(database);
+            get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
+                const data = snapshot.val()
+                const numTb = data.findIndex((elem) => elem.id === idTableau)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
+                data[numTb].colonnes.splice(numCol, 1)
+                set(ref(database, 'tableaux/' + uid), data);
+                resolve(data[numTb].colonnes)
+            }) 
+        }
+        catch(e) {
+            reject(e)
+        }
+    })
+}
 
-export function UpdateColonne(){}
+export function updateColonne(uid, idTableau, idColonne, colonneName){
+    return new Promise((resolve, reject) =>{
+        try {
+            const reference = ref(database);
+            get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
+                const data = snapshot.val()
+                const numTb = data.findIndex((elem) => elem.id === idTableau)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
+                data[numTb].colonnes[numCol] = {...data[numTb].colonnes[numCol], colonne: colonneName,}
+                set(ref(database, 'tableaux/' + uid), data);
+                resolve(data[numTb].colonnes)
+            }) 
+        }
+        catch(e) {
+            reject(e)
+        }
+    })
+}

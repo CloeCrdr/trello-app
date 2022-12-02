@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
@@ -17,23 +17,28 @@ export const styles = StyleSheet.create({
         borderTopLeftRadius: 5,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
+        backgroundColor: 'white',
+        opacity: 0.7,
+        padding: 15,
+        fontSize: 15,
+        color: 'black',
     },
     form: {
         flex: 1,
         alignItems: 'bottom',
         justifyContent: 'center',
     },
+    fondImage: {
+        opacity: 0.9,
+        width: Dimensions.get('window').width,
+    },
     imageForm: {
         marginLeft: 'auto',
         marginRight: 'auto',
         marginBottom: 40,
-        borderRadius: 150,
         height: 150,
         width: 150,
-        borderColor: 'lightgrey',
-        borderWidth: 2,
-        borderStyle: 'solid',
-        resizeMode: 'cover'
+        resizeMode: 'cover',
     },
     buttonForm: {
         alignContent: 'center',
@@ -44,18 +49,24 @@ export const styles = StyleSheet.create({
         borderRadius: 0,
         marginTop: 15,
         textTransform: 'capitalize',
+        backgroundColor: '#6bbaa7',
     },
     buttonRight: {
-        justifyContent: 'right', 
-        alignItems: 'right',
+        justifyContent: 'right',
+        alignItems: 'center',
         marginRight: 1,
-    }, 
+    },
     listItem: {
         justifyContent: 'space-between',
+        alignContent: 'center',
+        alignItems: 'center',
         flex: 1,
+        flexDirection: 'row',
+        width: Dimensions.get('window').width
     },
     textList: {
-        width: 300,
+        alignContent: 'stretch',
+        alignItems: 'stretch',
     }
 
 });

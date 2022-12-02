@@ -1,6 +1,6 @@
-import { Button, TextInput, Text } from "react-native-paper";
+import { Button,  Text } from "@rneui/themed";
 import { useContext, useState } from "react";
-import {Alert, Keyboard, SafeAreaView, StatusBar, View, Image} from 'react-native'
+import {Alert, Keyboard, SafeAreaView, StatusBar, View, Image, TextInput, ImageBackground} from 'react-native'
 import { createUser } from "../api/connect";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
@@ -24,12 +24,16 @@ export function Register() {
     }
     return (
         <View style={{flex: 1}}>
+            <ImageBackground source={require('../assets/gradient.png')} resizeMode="cover"
+            style={{flex: 1}}>
             <SafeAreaView style={styles.form}>
-                <Image 
-                    resizeMode='contain' 
-                    style={styles.imageForm}
-                    source={require('../assets/logo.gif')}
-                />
+            <View style={styles.fondImage}>
+                    <Image 
+                        resizeMode='contain' 
+                        style={styles.imageForm}
+                        source={require('../assets/logo.png')}
+                    />
+                </View>
                 <TextInput 
                     placeholder="Login" 
                     keyboardType="email-address" 
@@ -53,14 +57,15 @@ export function Register() {
                 <Text style={styles.buttonForm}>
                 <Button 
                     onPress={handleClick}
-                    mode="elevated"
-                    style={styles.buttonForm}
+                    mode="elevated"   
+                    buttonStyle={styles.buttonForm}
                 >
                     Inscription
                 </Button>
                 </Text>
                 <StatusBar style="auto" />
             </SafeAreaView>
+            </ImageBackground>
         </View>
     );
 }

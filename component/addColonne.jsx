@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { TextInput, Button } from "react-native-paper";
-import { StatusBar, View } from "react-native";
+import { ImageBackground, StatusBar, View } from "react-native";
 import { createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
 
@@ -20,10 +20,18 @@ export function AddColonne({navigation, route}) {
     }
 
     return (
-        <View>
-            <TextInput placeholder="Colonne" value={nameColonne} onChangeText={setNameColonne} />
-            <Button onPress={handleClick}>Créer la colonne</Button>
-            <StatusBar style="auto" />
-        </View>
+        <>
+            <View style={{flex: 1}}>
+                <ImageBackground
+                    source={require('../assets/gradientApp.png')} 
+                    resizeMode="cover" 
+                    style={{flex: 1}}
+                >
+                    <TextInput placeholder="Colonne" value={nameColonne} onChangeText={setNameColonne} />
+                    <Button onPress={handleClick}>Créer la colonne</Button>
+                    <StatusBar style="auto" />
+                </ImageBackground>
+            </View>
+        </>
     )
 }

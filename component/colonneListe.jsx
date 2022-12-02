@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Alert, FlatList, ScrollView } from "react-native";
+import { Alert, FlatList, ImageBackground, ScrollView, View } from "react-native";
 import { Button } from "react-native-paper";
 import { getAllColonnes, createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
@@ -26,12 +26,20 @@ export function ColonneList({navigation}) {
 
     return (
         <>
+            <View style={{flex: 1}}>
+                <ImageBackground 
+                    source={require('../assets/gradientApp.png')} 
+                    resizeMode="cover" style={{flex: 1}}
+                >
+                    <FlatList 
+                        keyExtractor={keyExtractor} 
+                        data={colonnes} 
+                        renderItem={renderItem}
+                    />
+                </ImageBackground>
+            </View>
        
-            <FlatList 
-                keyExtractor={keyExtractor} 
-                data={colonnes} 
-                renderItem={renderItem}
-            />
+        
         
 
         <Button mode="contained-tonal" onPress={handleClick}>++</Button>

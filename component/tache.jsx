@@ -9,6 +9,7 @@ import { styles } from "../styles";
 
 export function Tache({item, navigation, modif, route}) {
     const {user, setTaskView} = useContext(TrelloContext);
+    console.log(item)
     function handleClick() {
         setTaskView(item)
         //navigation.push('Ma tâche')
@@ -25,14 +26,42 @@ export function Tache({item, navigation, modif, route}) {
     }
 
     return (
-        <View style={{width: Dimensions.get('window').width}}>
-            <ListItem
-                bottomDivider
-                style={styles.listItem}
-            >
-            
-                
-                
+        <View style={{ width: Dimensions.get('window').width }}>
+            <ListItem bottomDivider>
+                <View style={styles.listItem}>
+                    <ListItem.Title>
+                        <Text
+                            style={styles.textList}
+                            onPress={handleClick}>{item.tache}
+                        </Text>
+                    </ListItem.Title>
+                    <Text style={styles.buttonRight}>
+                        <Button
+                            onPress={handleUpdate}
+                            icon={{
+                                name: 'edit',
+                                color: 'red'
+                            }}
+                            buttonStyle={{
+                                color: 'white',
+                                backgroundColor: 'white'
+                            }}
+                        />
+                        <Button
+                            onPress={handleDelete}
+                            icon={{
+                                name: 'delete',
+                                color: 'red'
+                            }}
+                            buttonStyle={{
+                                color: 'white',
+                                backgroundColor: 'white'
+                            }}
+                        />
+                    </Text>
+                </View>
+
+
             </ListItem>
         </View>
     )
