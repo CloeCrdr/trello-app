@@ -5,18 +5,18 @@ import { getDownloadURL, getStorage, ref as refB, uploadBytes, } from "firebase/
 
 const database = getDatabase(app);
 
-export function createColonne(uid, idTable, colonneName){
+export function createTache(uid, idColonne, tacheName){
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val() ?? [];
-                const indexTable = data.findIndex(elem => elem.id === idTable)
-                if (indexTable == -1) reject({ message: "id non trouvé sur le tableau" })
-                if (!data[indexTable].colonnes) data[indexTable].colonnes = []
-                data[indexTable].colonnes.push({ id: uuidv4(), colonne: colonneName, taches: [] })
+                const indexColonne = data.findIndex(elem => elem.id === idColonne)
+                if (indexColonne == -1) reject({ message: "id non trouvé sur la colonne" })
+                if (!data[indexColonne].taches) data[indexColonne].taches = []
+                data[indexColonne].taches.push({ id: uuidv4(), tache: tacheName, id_colonne: idColonne })
                 set(ref(database, 'tableaux/' + uid), data)
-                resolve(data[indexTable].colonnes)
+                resolve(data[indexColonne].taches)
             }).catch(err => {
                 console.log(err);
             });
@@ -27,17 +27,17 @@ export function createColonne(uid, idTable, colonneName){
     })
 }
 
-export function getAllColonnes(uid, idTable){
+export function getAllTaches(uid, idColonne){
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val() ?? [];
-                const indexTable = data.findIndex(elem => elem.id === idTable)
-                if (indexTable == -1) reject({ message: "id non trouvé dans le tableau" })
-                if (!data[indexTable].colonnes) data[indexTable].colonnes = []
+                const indexColonne = data.findIndex(elem => elem.id === idColonne)
+                if (indexColonne == -1) reject({ message: "id non trouvé dans la colonne" })
+                if (!data[indexColonne].taches) data[indexColonne].taches = []
 
-                resolve(data[indexTable].colonnes)
+                resolve(data[indexColonne].taches)
             });
         }
         catch (e) {

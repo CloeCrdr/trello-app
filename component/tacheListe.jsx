@@ -5,31 +5,32 @@ import { getAllColonnes, createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
 import {styles} from "../styles";
 import { Colonne } from "./colonne";
+import { Tache } from "./tache";
 
-const keyExtractor = (item, index) => item.id
+const keyExtractor = (item, index) => item.id_tache
 
-export function ColonneList({navigation}) {
-    const [colonnes, setColonnes] = useState([]);
-    const {user, tableView} = useContext(TrelloContext)
+export function TacheList({navigation}) {
+    const [taches, setTaches] = useState([]);
+    const {user, colonneView} = useContext(TrelloContext)
     function handleClick() {
-        navigation.push("Ajouter une colonne", {setColonnes: setColonnes})
+        navigation.push("Ajouter une tâche", {setTaches: setTaches})
     }
+    console.log(colonneView)
     useEffect(() => {
-        getAllColonnes(user.uid, tableView.id ).then(data => {
-            setColonnes([...data])
+        getAllColonnes(user.uid, colonneView.id ).then(data => {
+            setTaches([...data])
         }).catch(err => console.log(err))
     }, []);
 
     const renderItem = ({ item }) => {
-        return <Colonne item={item} navigation={navigation} modif={setColonnes}/>
+        return <Tache item={item} navigation={navigation} modif={setTaches}/>
     }
 
     return (
         <>
-       
             <FlatList 
                 keyExtractor={keyExtractor} 
-                data={colonnes} 
+                data={taches} 
                 renderItem={renderItem}
             />
         

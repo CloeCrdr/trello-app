@@ -37,25 +37,26 @@ export function connectUser(email, password) {
     })
 }
 
-export function logoutUser(email, password){
-    return new Promise((resolve, reject) => {
-
-        signOut()
-            .then(() => {
-                console.log('logged out')
-                // Signed in 
-                resolve(userCredential.user);
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                reject(errorMessage)
-                // ..
-            });
-    })
-}
-
+// export function logoutUser(email, password){
+//     return new Promise((resolve, reject) => {
+//         signOut()
+//             .then(() => {
+//                 console.log('logged out')
+//                 // Signed in 
+//                 resolve(userCredential.user);
+//                 // ...
+//             })
+//             .catch((error) => {
+//                 const errorCode = error.code;
+//                 const errorMessage = error.message;
+//                 reject(errorMessage)
+//                 // ..
+//             });
+//     })
+// }
+export const logOut = async () => {
+    await firebase.auth().signOut();
+};
 export function connectGoogle(){
     return new Promise((resolve, reject) => {
      

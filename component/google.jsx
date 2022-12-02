@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 
 export function LogGoogle() {
     function handleClick(){
-        //Keyboard.dismiss();
+        Keyboard.dismiss();
        
     }
     return (

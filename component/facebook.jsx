@@ -6,7 +6,7 @@ import App from "../api/app";
 //const provider = new FacebookAuthProvider();
 export function LogFacebook() {
     function handleClick(){
-        //Keyboard.dismiss();
+        Keyboard.dismiss();
         // signInWithPopup(auth, provider)
         //     .then((result) => {
         //         // The signed-in user info.

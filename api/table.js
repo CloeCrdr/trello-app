@@ -10,7 +10,7 @@ export function createTable(uid, tableName) {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val() ?? [];
-                data.push({ id: uuidv4(), nom: tableName, listes: []})
+                data.push({ id: uuidv4(), nom: tableName, colonnes: [], taches: []})
                 set(ref(database, 'tableaux/' + uid), data)
                 resolve(data)
             }).catch(err => {
@@ -28,7 +28,7 @@ export function getAllTables(uid) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database, 'tableaux/' + uid);
-            console.log(reference);
+            //console.log(reference);
             onValue(reference, (snapshot) => {
                 const data = snapshot.val();
                 resolve(data)
@@ -65,7 +65,7 @@ export function updateTable(uid, idTable, tableName) {
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val();
                 const num = data.findIndex((elem) => elem.id === idTable)
-                data.splice(num,1) //data [index] = {ce qu'on veut modifier} nom: tableName 
+                data[num] = {...data[num], nom: tableName}
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data)
             });

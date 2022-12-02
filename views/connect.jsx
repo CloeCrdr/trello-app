@@ -13,7 +13,7 @@ export function Connect() {
     const [mdp, setMdp] = useState("");
     const { setUser } = useContext(TrelloContext);
     function handleClick(){
-        //Keyboard.dismiss();
+        Keyboard.dismiss();
         connectUser(login, mdp).then(data =>{
             setUser(data)
         }).catch(err => {

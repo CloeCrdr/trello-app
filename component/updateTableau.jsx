@@ -1,16 +1,17 @@
 import { useState, useContext } from "react";
 import { TextInput, Button } from "react-native-paper";
 import { StatusBar, View } from "react-native";
-import { createTable } from "../api/table";
+import { updateTable } from "../api/table";
 import { TrelloContext } from "../context/trello";
 
 import {styles} from "../styles";
 
-export function AddTableau({navigation, route}) {
-    const [nameTableau, setNameTableau] = useState("");
+export function UpdateTableau({navigation, route}) {
+    console.log(route.params)
+    const [nameTableau, setNameTableau] = useState(route.params.nomTableau);
     const {user} = useContext(TrelloContext);
     function handleClick() {
-        createTable(user.uid, nameTableau).then(data => {
+        updateTable(user.uid, route.params.idTableau, nameTableau ).then(data => {
             route.params.setTableaux([...data]);
             navigation.goBack()
         }).catch(err => {
@@ -20,8 +21,8 @@ export function AddTableau({navigation, route}) {
 
     return (
         <View>
-            <TextInput placeholder="Tableau" value={nameTableau} onChangeText={setNameTableau} />
-            <Button onPress={handleClick}>Créer le tableau</Button>
+            <TextInput value={nameTableau} onChangeText={setNameTableau} />
+            <Button onPress={handleClick}>Modifier le tableau</Button>
             <StatusBar style="auto" />
         </View>
     )

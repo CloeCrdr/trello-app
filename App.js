@@ -8,9 +8,11 @@ import  {LinearGradient} from 'react-native-linear-gradient'
 export default function App() {
   const [user, setUser] = useState({});
   const [tableView, setTableView] = useState("");
+  const [colonneView, setColonneView] = useState("");
+  const [taskView, setTaskView] = useState("");
   return (
 
-    <TrelloContext.Provider value={{user, setUser, tableView, setTableView}}>
+    <TrelloContext.Provider value={{user, setUser, tableView, setTableView, colonneView, setColonneView, taskView, setTaskView}}>
 
       {(user.email) ? <TrelloRouter /> : <ConnectRouter />}  
 

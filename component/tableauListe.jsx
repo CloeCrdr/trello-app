@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useContext, useState } from "react";
-import { Alert, FlatList, ScrollView } from "react-native";
+import { Alert, FlatList, ScrollView, View } from "react-native";
 import { Button } from "react-native-paper";
 
 import { getAllTables, createTable } from "../api/table";
@@ -12,7 +12,6 @@ const keyExtractor = (item, index) => item.id
 
 export function TableauList({navigation}) {
     const [tableaux, setTableaux] = useState([]);
-    const [tableName, setTableName] = useState("");
     const {user} = useContext(TrelloContext)
 
     function handleClick() {
@@ -28,13 +27,13 @@ export function TableauList({navigation}) {
     }
     return(
             <>
-                <ScrollView>
+                <View>
                     <FlatList 
                         keyExtractor={keyExtractor} 
                         data={tableaux} 
                         renderItem={renderItem}
                     />
-                </ScrollView>
+                </View>
                 
 
                 <Button mode="contained-tonal" onPress={handleClick}>++</Button>

@@ -45,5 +45,17 @@ export const styles = StyleSheet.create({
         marginTop: 15,
         textTransform: 'capitalize',
     },
+    buttonRight: {
+        justifyContent: 'right', 
+        alignItems: 'right',
+        marginRight: 1,
+    }, 
+    listItem: {
+        justifyContent: 'space-between',
+        flex: 1,
+    },
+    textList: {
+        width: 300,
+    }
 
 });
