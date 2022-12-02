@@ -67,6 +67,26 @@ export const styles = StyleSheet.create({
     textList: {
         alignContent: 'stretch',
         alignItems: 'stretch',
+    },
+    buttonStyle: {
+        width: 50,
+        height: 50,
+        borderRadius: 100, 
+        backgroundColor: '#6BBAA7',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    buttonContainerStyle: {
+
+        marginLeft: 'auto' ,
+        marginRight: 20,
+        marginBottom: 20,
+        color:'white',
+       
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center'
     }
 
 });

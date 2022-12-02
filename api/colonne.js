@@ -1,7 +1,6 @@
 import { uuidv4 } from "@firebase/util";
 import { child, get, getDatabase, onValue, ref, set } from "firebase/database";
 import { app } from "./app";
-import { getDownloadURL, getStorage, ref as refB, uploadBytes, } from "firebase/storage";
 
 const database = getDatabase(app);
 
@@ -72,11 +71,13 @@ export function updateColonne(uid, idTableau, idColonne, colonneName){
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val()
                 const numTb = data.findIndex((elem) => elem.id === idTableau)
+                if (numTb == -1) reject({ message: "id non trouvé dans le tableau" })
                 const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
+                if (numCol == -1) reject({ message: "id non trouvé dans la colonne" })
                 data[numTb].colonnes[numCol] = {...data[numTb].colonnes[numCol], colonne: colonneName,}
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes)
-            }) 
+            })  
         }
         catch(e) {
             reject(e)

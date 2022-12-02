@@ -10,10 +10,11 @@ export function AddTache({ navigation, route }) {
     const [nameTache, setNameTache] = useState("");
     const { user, tableView, colonneView } = useContext(TrelloContext);
     const [tacheContent, setTacheContent] = useState("")
+    const [imageTache, setImageTache] = useState("")
 
     console.log(colonneView.id)
     function handleClick() {
-        createTache(user.uid, tableView.id, colonneView.id, nameTache, tacheContent).then(data => {
+        createTache(user.uid, tableView.id, colonneView.id, nameTache, tacheContent, imageTache).then(data => {
             route.params.setTaches([...data])
             navigation.goBack()
 

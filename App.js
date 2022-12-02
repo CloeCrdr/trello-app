@@ -9,14 +9,16 @@ export default function App() {
   const [user, setUser] = useState({});
   const [tableView, setTableView] = useState("");
   const [colonneView, setColonneView] = useState("");
-  const [taskView, setTaskView] = useState("");
+  const [tacheView, setTacheView] = useState("");
+  const [singleView, setSingleView] = useState("")
   return (
 
     <TrelloContext.Provider value={{
       user, setUser, 
       tableView, setTableView, 
       colonneView, setColonneView, 
-      taskView, setTaskView
+      tacheView, setTacheView,
+      singleView, setSingleView
     }}>
 
       {(user.email) ? <TrelloRouter /> : <ConnectRouter />}  

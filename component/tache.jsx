@@ -1,28 +1,30 @@
-import { ListItem} from "@rneui/themed";
+import { ListItem } from "@rneui/themed";
 import { useContext } from "react";
-import {Dimensions, View} from "react-native";
+import { Dimensions, View } from "react-native";
 import { deleteTable } from "../api/table";
 import { TrelloContext } from "../context/trello";
 import { Button, Icon } from "react-native-elements";
 import { Text } from "react-native-paper";
 import { styles } from "../styles";
+import { deleteTache } from "../api/tache";
 
-export function Tache({item, navigation, modif, route}) {
-    const {user, setTaskView} = useContext(TrelloContext);
+export function Tache({ item, navigation, modif, route }) {
+    const { user, tableView, colonneView, setTacheView} = useContext(TrelloContext);
     console.log(item)
     function handleClick() {
-        setTaskView(item)
-        //navigation.push('Ma tâche')
+        setTacheView(item)
+        navigation.push('Ma tâche', {idTache: item.id, nomTache: item.tache, contentTache : item.content, imageTache : item.image})
     }
-    function handleUpdate(){
-        //navigation.push("Modifier une colonne", {idTableau: item.id, nomTableau: item.nom, setTableaux: modif}) 
+    function handleUpdate() {
+        setTacheView(item)
+        navigation.push("Modifier une tâche", {idTache: item.id, nomTache: item.tache, contentTache : item.content, imageTache : item.image, setTaches: modif}) 
     }
-    function handleDelete(){
-        // deleteTable(user.uid, item.id).then((data) => {
-        //     modif([...data]);
-        // }).catch(err => {
-        //     console.log(err);
-        // })
+    function handleDelete() {
+        deleteTache(user.uid, tableView.id, colonneView.id, item.id).then((data) => {
+            modif([...data]);
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
     return (
@@ -40,22 +42,30 @@ export function Tache({item, navigation, modif, route}) {
                             onPress={handleUpdate}
                             icon={{
                                 name: 'edit',
-                                color: 'red'
+                                color: 'white',
                             }}
                             buttonStyle={{
                                 color: 'white',
-                                backgroundColor: 'white'
+                                backgroundColor: '#FBA100',
+                                marginRight: 4,
+                                width: 50,
+                                height: 50,
+                                borderRadius: 100,
                             }}
                         />
                         <Button
                             onPress={handleDelete}
                             icon={{
                                 name: 'delete',
-                                color: 'red'
+                                color: 'white',
                             }}
                             buttonStyle={{
                                 color: 'white',
-                                backgroundColor: 'white'
+                                backgroundColor: '#6C648B',
+                                marginLeft: 4,
+                                width: 50,
+                                height: 50,
+                                borderRadius: 100,
                             }}
                         />
                     </Text>

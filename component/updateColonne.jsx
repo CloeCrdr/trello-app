@@ -7,11 +7,12 @@ import {styles} from "../styles";
 import { updateColonne } from "../api/colonne";
 
 export function UpdateColonne({navigation, route}) {
-    console.log('hello world', route.params)
     const [nameColonne, setNameColonne] = useState(route.params.nomColonne);
     const {user, tableView, colonneView} = useContext(TrelloContext);
+
+    console.log(colonneView)
     function handleClick() {
-        updateColonne(user.uid, tableView.id, colonneView, nameColonne ).then(data => {
+        updateColonne(user.uid, tableView.id, colonneView.id, nameColonne ).then(data => {
             route.params.setColonnes([...data]);
             navigation.goBack()
         }).catch(err => {

@@ -4,6 +4,7 @@ import { app } from "./app";
 
 const database = getDatabase(app);
 
+
 export function createTable(uid, tableName) {
     return new Promise((resolve, reject) => {
         try {

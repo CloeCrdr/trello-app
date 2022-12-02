@@ -15,12 +15,13 @@ import { UpdateTableau } from '../component/updateTableau';
 import { TacheList } from '../component/tacheListe';
 import { AddTache } from '../component/addTache';
 import { UpdateColonne } from '../component/updateColonne';
-
+import { UpdateTache } from '../component/updateTache';
+import { TacheView } from '../component/tacheView';
 
 const Stack = createStackNavigator();
 
 export function TrelloRouter() {
-    const {tableView, colonneView, taskView} = useContext(TrelloContext)
+    const {tableView, colonneView, tacheView} = useContext(TrelloContext)
 
     return (
         
@@ -36,7 +37,9 @@ export function TrelloRouter() {
 
                 <Stack.Screen name="Tâches" options={{title: 'Colonne "' + colonneView.colonne + '"'}} component={TacheList} />
                 <Stack.Screen name="Ajouter une tâche" component={AddTache} />
-                <Stack.Screen name="Modifier une tâche" component={UpdateTableau} />
+                <Stack.Screen name="Modifier une tâche" component={UpdateTache} />
+
+                <Stack.Screen name="Ma tâche" options={{title: tacheView.tache }} component={TacheView} />
             </Stack.Navigator> 
          </NavigationContainer>
 

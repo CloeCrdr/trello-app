@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Alert, FlatList, ImageBackground, ScrollView, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button } from "@rneui/themed";
 import { getAllColonnes, createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
 import {styles} from "../styles";
@@ -36,13 +36,19 @@ export function ColonneList({navigation}) {
                         data={colonnes} 
                         renderItem={renderItem}
                     />
+
+                    <Button 
+                        mode="contained-tonal" 
+                        onPress={handleClick}
+                        icon={{
+                            name: 'add',
+                            color: 'white',
+                            width: 65,
+                        }}
+                        buttonStyle={styles.buttonStyle}
+                    />
                 </ImageBackground>
             </View>
-       
-        
-        
-
-        <Button mode="contained-tonal" onPress={handleClick}>++</Button>
     </>
     )
 }

@@ -16,6 +16,7 @@ export function Colonne({ item, navigation, modif, route }) {
         navigation.push("Tâches")
     }
     function handleUpdate() {
+        setColonneView(item)
         navigation.push("Modifier une colonne", {idColonne: item.id, nomColonne: item.colonne, setColonnes: modif}) 
     }
     function handleDelete() {
