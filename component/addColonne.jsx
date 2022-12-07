@@ -1,17 +1,17 @@
 import { useState, useContext } from "react";
-import { TextInput, Button } from "react-native-paper";
-import { ImageBackground, StatusBar, View } from "react-native";
+import { Button, Text } from "@rneui/themed";
+import { ImageBackground, StatusBar, View, TextInput } from "react-native";
 import { createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
 
-import {styles} from "../styles";
+import { styles } from "../styles";
 
-export function AddColonne({navigation, route}) {
+export function AddColonne({ navigation, route }) {
     const [nameColonne, setNameColonne] = useState("");
-    const {user, tableView} = useContext(TrelloContext);
-    
+    const { user, tableView } = useContext(TrelloContext);
+
     function handleClick() {
-        createColonne(user.uid, tableView.id , nameColonne).then(data => {
+        createColonne(user.uid, tableView.id, nameColonne).then(data => {
             route.params.setColonnes([...data])
             navigation.goBack()
         }).catch(err => {
@@ -21,14 +21,30 @@ export function AddColonne({navigation, route}) {
 
     return (
         <>
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <ImageBackground
-                    source={require('../assets/gradientApp.png')} 
-                    resizeMode="cover" 
-                    style={{flex: 1}}
+                    source={require('../assets/gradientApp.png')}
+                    resizeMode="cover"
+                    style={{ flex: 1 }}
                 >
-                    <TextInput placeholder="Colonne" value={nameColonne} onChangeText={setNameColonne} />
-                    <Button onPress={handleClick}>Créer la colonne</Button>
+                    <View style={styles.addBck}>
+                        <Text style={styles.h1}>Nouvelle colonne</Text>
+                        <TextInput
+                            placeholder="Colonne"
+                            value={nameColonne}
+                            onChangeText={setNameColonne}
+                            style={styles.inputB}
+                            mode="fat"
+                            selectionColor="purple"
+                        />
+                        <Button
+                            onPress={handleClick}
+                            buttonStyle={styles.buttonForm}
+                        >
+                            Créer la colonne
+                        </Button>
+
+                    </View>
                     <StatusBar style="auto" />
                 </ImageBackground>
             </View>

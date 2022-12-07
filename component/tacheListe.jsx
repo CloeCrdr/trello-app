@@ -16,7 +16,6 @@ export function TacheList({ navigation }) {
     function handleClick() {
         navigation.push("Ajouter une tâche", { setTaches: setTaches })
     }
-    console.log(colonneView)
     useEffect(() => {
         getAllTaches(user.uid, tableView.id, colonneView.id).then(data => {
             setTaches([...data])

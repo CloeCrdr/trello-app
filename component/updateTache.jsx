@@ -12,8 +12,7 @@ export function UpdateTache({navigation, route}) {
     const [contentTache, setContentTache] = useState(route.params.contentTache)
     const [imageTache, setImageTache] = useState(route.params.imageTache)
     const {user, tableView, colonneView, tacheView} = useContext(TrelloContext);
-    console.log(route.params)
-    console.log(tacheView)
+    
     function handleClick() {
         updateTache(user.uid, tableView.id, colonneView.id, tacheView.id, nameTache, contentTache, imageTache ).then(data => {
             route.params.setTaches([...data]);

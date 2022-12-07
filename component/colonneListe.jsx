@@ -37,8 +37,8 @@ export function ColonneList({navigation}) {
                         renderItem={renderItem}
                     />
 
-                    <Button 
-                        mode="contained-tonal" 
+                    <Button
+                        mode="contained-tonal"
                         onPress={handleClick}
                         icon={{
                             name: 'add',
@@ -46,6 +46,7 @@ export function ColonneList({navigation}) {
                             width: 65,
                         }}
                         buttonStyle={styles.buttonStyle}
+                        style={styles.buttonContainerStyle}
                     />
                 </ImageBackground>
             </View>

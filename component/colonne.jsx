@@ -1,7 +1,6 @@
 import { ListItem } from "@rneui/themed";
-import { useContext } from "react";
-import { Dimensions, View } from "react-native";
-import { deleteTable } from "../api/table";
+import { useContext, useState } from "react";
+import { Alert, Dimensions, View } from "react-native";
 import { TrelloContext } from "../context/trello";
 import { Button, Icon } from "react-native-elements";
 import { Text } from "react-native-paper";
@@ -10,6 +9,7 @@ import { deleteColonne } from "../api/colonne";
 
 export function Colonne({ item, navigation, modif, route }) {
     const { user, tableView, setColonneView } = useContext(TrelloContext);
+    const [showBox, setShowBox] = useState(true); 
 
     function handleClick() {
         setColonneView(item)
@@ -20,13 +20,31 @@ export function Colonne({ item, navigation, modif, route }) {
         navigation.push("Modifier une colonne", {idColonne: item.id, nomColonne: item.colonne, setColonnes: modif}) 
     }
     function handleDelete() {
-        deleteColonne(user.uid, tableView.id, item.id).then((data) => {
-            modif([...data]);
-        }).catch(err => {
-            console.log(err);
-        })
+        return Alert.alert(
+            `Supprimer \n "${item.colonne}" ?`, 
+            `Êtes vous sûr.e de vouloir supprimer cette colone ? \n Cela entraînera la suppression de toutes les tâches contenues dans celle-ci.`, 
+            [
+                //bouton oui
+                {
+                    text: "Oui",
+                    onPress: () => {
+                        deleteColonne(user.uid, tableView.id, item.id).then((data) => {
+                            modif([...data])
+                        }).catch(err => {
+                            console.log(err);
+                        })
+                    }
+                },
+                //bouton annuler
+                {
+                    text: "Annuler", 
+                    onPress: () => {
+                        setShowBox(false)
+                    }
+                }
+            ]
+        )
     }
-
     return (
         <View style={{ width: Dimensions.get('window').width }}>
             <ListItem bottomDivider>

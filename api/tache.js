@@ -95,3 +95,28 @@ export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tache
         }
     })
 }
+
+export function uploadFile(fich, nom) {
+    return new Promise((res, rej) => {
+        new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                resolve(xhr.response);
+            };
+            xhr.onerror = function (e) {
+                console.log(e);
+                reject(new TypeError("Network request failed"));
+            };
+            xhr.responseType = "blob";
+            xhr.open("GET", fich, true);
+            xhr.send(null);
+        }).then(blob => {
+            const fileRef = refB(storage, nom);
+            uploadBytes(fileRef, blob).then(snapshot => {
+                // We're done with the blob, close and release it 
+                blob.close();
+                res(getDownloadURL(fileRef))
+            })
+        }).catch(err => rej(err.message))
+    })
+}

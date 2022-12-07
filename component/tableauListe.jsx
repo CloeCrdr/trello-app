@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useContext, useState } from "react";
-import { Alert, FlatList, ImageBackground, ScrollView, View } from "react-native";
+import { Alert, Animated, FlatList, ImageBackground, ScrollView, View } from "react-native";
 import { Button } from "@rneui/themed";
 
 import { getAllTables } from "../api/table";

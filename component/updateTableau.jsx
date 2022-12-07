@@ -1,18 +1,16 @@
 import { useState, useContext } from "react";
-import { TextInput } from "react-native-paper";
-import { Button } from "@rneui/themed";
-import { ImageBackground, StatusBar, View } from "react-native";
+import { Button, Text } from "@rneui/themed";
+import { ImageBackground, StatusBar,  View, TextInput } from "react-native";
 import { updateTable } from "../api/table";
 import { TrelloContext } from "../context/trello";
 
-import {styles} from "../styles";
+import { styles } from "../styles";
 
-export function UpdateTableau({navigation, route}) {
-    console.log(route.params)
+export function UpdateTableau({ navigation, route }) {
     const [nameTableau, setNameTableau] = useState(route.params.nomTableau);
-    const {user} = useContext(TrelloContext);
+    const { user } = useContext(TrelloContext);
     function handleClick() {
-        updateTable(user.uid, route.params.idTableau, nameTableau ).then(data => {
+        updateTable(user.uid, route.params.idTableau, nameTableau).then(data => {
             route.params.setTableaux([...data]);
             navigation.goBack()
         }).catch(err => {
@@ -22,17 +20,28 @@ export function UpdateTableau({navigation, route}) {
 
     return (
         <>
-             <View style={{flex: 1}}>
-                <ImageBackground 
-                    source={require('../assets/gradientApp.png')} 
-                    resizeMode="cover" 
-                    style={{flex: 1}}
+            <View style={{ flex: 1 }}>
+                <ImageBackground
+                    source={require('../assets/gradientApp.png')}
+                    resizeMode="cover"
+                    style={{ flex: 1 }}
                 >
-                    <TextInput value={nameTableau} onChangeText={setNameTableau} />
-                    <Button onPress={handleClick}>Modifier le tableau</Button>
+                    <View style={styles.addBck}>
+                        <Text style={styles.h1}>Modifier le tableau </Text>
+                        <Text style={styles.h2}>{nameTableau}</Text>
+                        <TextInput value={nameTableau} onChangeText={setNameTableau}
+                            style={styles.inputB}
+                            mode="fat"
+                            selectionColor="purple"
+                        />
+                        <Button
+                            onPress={handleClick}
+                            buttonStyle={styles.buttonForm}
+                        >Modifier le tableau</Button>
+                    </View>
                     <StatusBar style="auto" />
                 </ImageBackground>
-            </View>
+            </View >
         </>
     )
 }

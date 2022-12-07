@@ -23,6 +23,18 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         color: 'black',
     },
+    inputB: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: 10,
+        width: 300,
+        borderRadius: 5,
+        backgroundColor: '#EFEFEF',
+        opacity: 0.7,
+        padding: 15,
+        fontSize: 15,
+        color: 'black',
+    },
     form: {
         flex: 1,
         alignItems: 'bottom',
@@ -62,11 +74,12 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         flexDirection: 'row',
-        width: Dimensions.get('window').width
+        width: Dimensions.get('window').width,
     },
     textList: {
-        alignContent: 'stretch',
-        alignItems: 'stretch',
+        alignContent: 'center',
+        alignItems: 'center',
+        maxWidth: 180,
     },
     buttonStyle: {
         width: 50,
@@ -78,15 +91,51 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     buttonContainerStyle: {
-
         marginLeft: 'auto' ,
         marginRight: 20,
         marginBottom: 20,
         color:'white',
-       
         alignItems: 'center',
         alignContent: 'center',
         justifyContent: 'center'
+    }, 
+    listTableau : {
+        borderWidth: 1,
+        borderColor: '#e4d8f8',
+        backgroundColor: 'rgba(255,255,255,0.6)',
+        borderRadius: 5,
+        shadowOffset: {
+            width: 2,
+            height: 1,
+        },
+        shadowOpacity: 0.55,
+        shadowColor: '#e4d8f8',
+        elevation: 10,
+        alignSelf: 'center',
+        padding: 25,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
+    }, 
+    h1: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        alignContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        margin: 5,
+        marginBottom: 15,
+    },
+    h2: {
+        fontSize: 15,
+        fontStyle: 'italic',
+        alignContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        marginBottom: 25
+    },
+    addBck : {
+        backgroundColor: 'rgba(255,255,255, 0.9)',
+        padding: 25,
     }
-
 });

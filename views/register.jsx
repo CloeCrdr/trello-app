@@ -24,7 +24,7 @@ export function Register() {
     }
     return (
         <View style={{flex: 1}}>
-            <ImageBackground source={require('../assets/gradient.png')} resizeMode="cover"
+            <ImageBackground source={require('../assets/gradientApp.png')} resizeMode="cover"
             style={{flex: 1}}>
             <SafeAreaView style={styles.form}>
             <View style={styles.fondImage}>

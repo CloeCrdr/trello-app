@@ -29,7 +29,6 @@ export function getAllTables(uid) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database, 'tableaux/' + uid);
-            //console.log(reference);
             onValue(reference, (snapshot) => {
                 const data = snapshot.val();
                 resolve(data)

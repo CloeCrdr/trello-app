@@ -1,7 +1,6 @@
 import { ListItem } from "@rneui/themed";
 import { useContext } from "react";
-import { Dimensions, View } from "react-native";
-import { deleteTable } from "../api/table";
+import { Animated, Dimensions, View } from "react-native";
 import { TrelloContext } from "../context/trello";
 import { Button, Icon } from "react-native-elements";
 import { Text } from "react-native-paper";
@@ -10,7 +9,6 @@ import { deleteTache } from "../api/tache";
 
 export function Tache({ item, navigation, modif, route }) {
     const { user, tableView, colonneView, setTacheView} = useContext(TrelloContext);
-    console.log(item)
     function handleClick() {
         setTacheView(item)
         navigation.push('Ma tâche', {idTache: item.id, nomTache: item.tache, contentTache : item.content, imageTache : item.image})
