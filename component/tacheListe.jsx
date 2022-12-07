@@ -48,6 +48,7 @@ export function TacheList({ navigation }) {
                             width: 65,
                         }}
                         buttonStyle={styles.buttonStyle}
+                        style={styles.buttonContainerStyle}
                     />
                 </ImageBackground>
             </View>

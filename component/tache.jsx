@@ -1,6 +1,6 @@
 import { ListItem } from "@rneui/themed";
 import { useContext } from "react";
-import { Animated, Dimensions, View } from "react-native";
+import { Alert, Dimensions, View } from "react-native";
 import { TrelloContext } from "../context/trello";
 import { Button, Icon } from "react-native-elements";
 import { Text } from "react-native-paper";
@@ -18,11 +18,30 @@ export function Tache({ item, navigation, modif, route }) {
         navigation.push("Modifier une tâche", {idTache: item.id, nomTache: item.tache, contentTache : item.content, imageTache : item.image, setTaches: modif}) 
     }
     function handleDelete() {
-        deleteTache(user.uid, tableView.id, colonneView.id, item.id).then((data) => {
-            modif([...data]);
-        }).catch(err => {
-            console.log(err);
-        })
+        return Alert.alert(
+            `Supprimer \n "${item.nom}" ?`, 
+            `Êtes vous sûr.e de vouloir supprimer cette tâche ?`, 
+            [
+                //bouton oui
+                {
+                    text: "Oui",
+                    onPress: () => {
+                        deleteTache(user.uid, tableView.id, colonneView.id, item.id).then((data) => {
+                            modif([...data])
+                        }).catch(err => {
+                            console.log(err);
+                        })
+                    }
+                },
+                //bouton annuler
+                {
+                    text: "Annuler", 
+                    onPress: () => {
+                        setShowBox(false)
+                    }
+                }
+            ]
+        )
     }
 
     return (
@@ -41,13 +60,14 @@ export function Tache({ item, navigation, modif, route }) {
                             icon={{
                                 name: 'edit',
                                 color: 'white',
+                                size: 15,
                             }}
                             buttonStyle={{
                                 color: 'white',
                                 backgroundColor: '#FBA100',
                                 marginRight: 4,
-                                width: 50,
-                                height: 50,
+                                width: 40,
+                                height: 40,
                                 borderRadius: 100,
                             }}
                         />
@@ -56,13 +76,14 @@ export function Tache({ item, navigation, modif, route }) {
                             icon={{
                                 name: 'delete',
                                 color: 'white',
+                                size: 15
                             }}
                             buttonStyle={{
                                 color: 'white',
                                 backgroundColor: '#6C648B',
                                 marginLeft: 4,
-                                width: 50,
-                                height: 50,
+                                width: 40,
+                                height: 40,
                                 borderRadius: 100,
                             }}
                         />

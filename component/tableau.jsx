@@ -50,8 +50,8 @@ export function Tableau({ item, navigation, modif, route }) {
             <ListItem 
                 containerStyle={styles.listTableau}
                 Component={TouchableScale}
-                friction={90} //
-                tension={100} // These props are passed to the parent component (here TouchableScale)
+                friction={90} 
+                tension={100} 
                 activeScale={0.95}
             >
             <View style={styles.listItem}>

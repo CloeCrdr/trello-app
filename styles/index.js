@@ -76,6 +76,19 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         width: Dimensions.get('window').width,
     },
+    fondCol: {
+    },
+    listCol: {
+        flex: 1,
+        alignItems: 'center',
+        alignContent: 'center', 
+        width: Dimensions.get('window').width,
+    },
+    titleCol : {
+        margin: 5,
+        marginTop: 10,
+        marginBottom: 30,
+    },
     textList: {
         alignContent: 'center',
         alignItems: 'center',
