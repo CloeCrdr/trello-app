@@ -20,7 +20,7 @@ export function TableauList({ navigation }) {
     useEffect(() => {
         getAllTables(user.uid).then(data => {
             setTableaux([...data])
-        }).catch(err => console.log(err))
+        }).catch(err => Alert.alert(err))
     }, []);
     const renderItem = ({ item }) => {
         return <Tableau item={item} navigation={navigation} modif={setTableaux} />

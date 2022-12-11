@@ -5,7 +5,7 @@ import { app } from "./app";
 
 const database = getDatabase(app);
 
-export function createColonne(uid, idTable, colonneName){
+export function createColonne(uid, idTable, colonneName) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
@@ -27,7 +27,7 @@ export function createColonne(uid, idTable, colonneName){
     })
 }
 
-export function getAllColonnes(uid, idTable){
+export function getAllColonnes(uid, idTable) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
@@ -43,11 +43,11 @@ export function getAllColonnes(uid, idTable){
         catch (e) {
             reject(e)
         }
-    }) 
+    })
 }
 
-export function deleteColonne(uid, idTableau, idColonne){
-    return new Promise((resolve, reject) =>{
+export function deleteColonne(uid, idTableau, idColonne) {
+    return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
@@ -57,16 +57,16 @@ export function deleteColonne(uid, idTableau, idColonne){
                 data[numTb].colonnes.splice(numCol, 1)
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes)
-            }) 
+            })
         }
-        catch(e) {
+        catch (e) {
             reject(e)
         }
     })
 }
 
-export function updateColonne(uid, idTableau, idColonne, colonneName){
-    return new Promise((resolve, reject) =>{
+export function updateColonne(uid, idTableau, idColonne, colonneName) {
+    return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
@@ -75,12 +75,12 @@ export function updateColonne(uid, idTableau, idColonne, colonneName){
                 if (numTb == -1) reject({ message: "id non trouvé dans le tableau" })
                 const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
                 if (numCol == -1) reject({ message: "id non trouvé dans la colonne" })
-                data[numTb].colonnes[numCol] = {...data[numTb].colonnes[numCol], colonne: colonneName,}
+                data[numTb].colonnes[numCol] = { ...data[numTb].colonnes[numCol], colonne: colonneName, }
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes)
-            })  
+            })
         }
-        catch(e) {
+        catch (e) {
             reject(e)
         }
     })

@@ -30,7 +30,7 @@ export function Colonne({ item, navigation, modif, route }) {
                         deleteColonne(user.uid, tableView.id, item.id).then((data) => {
                             modif([...data])
                         }).catch(err => {
-                            console.log(err);
+                            Alert.alert(err);
                         })
                     }
                 },

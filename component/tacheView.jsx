@@ -11,9 +11,8 @@ export function TacheView({ navigation }) {
 
     useEffect(() => {
         getSingleTache(user.uid, tableView.id, colonneView.id, tacheView.id).then(data => {
-            console.log('hello world', data)
             setTache(data)
-        }).catch(err => console.log(err))
+        }).catch(err => Alert.alert(err))
     }, []);
 
     const renderItem = ({ item }) => {
@@ -31,7 +30,7 @@ export function TacheView({ navigation }) {
                     <View style={styles.addBck}>
                         <View>
                             <Text style={styles.h1}>
-                            {tache.tache}
+                                {tache.tache}
                             </Text>
                             <Text style={styles.contentDescription}>
                                 {tache.content}
@@ -39,12 +38,12 @@ export function TacheView({ navigation }) {
                         </View>
                         <Text style={styles.taskColor}>
                             <Text>Couleur de la tâche :</Text>
-                            <Button buttonStyle={[styles.buttonCouleur,{backgroundColor: `${tache.couleur}`}]}/>
+                            <Button buttonStyle={[styles.buttonCouleur, { backgroundColor: `${tache.couleur}` }]} />
                         </Text>
-                        
-                        <Image source={{ uri: tache.image }} style={[styles.imageTache, {borderColor: `${tache.couleur}`}]} />
+
+                        <Image source={{ uri: tache.image }} style={[styles.imageTache, { borderColor: `${tache.couleur}` }]} />
                     </View>
-                    
+
                 </ImageBackground>
             </View>
         </>

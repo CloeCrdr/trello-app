@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
+    // FORM ELEMENTS 
     input: {
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -40,18 +41,6 @@ export const styles = StyleSheet.create({
         alignItems: 'bottom',
         justifyContent: 'center',
     },
-    fondImage: {
-        opacity: 0.9,
-        width: Dimensions.get('window').width,
-    },
-    imageForm: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginBottom: 40,
-        height: 150,
-        width: 150,
-        resizeMode: 'cover',
-    },
     buttonForm: {
         alignContent: 'center',
         marginLeft: 'auto',
@@ -63,11 +52,59 @@ export const styles = StyleSheet.create({
         textTransform: 'capitalize',
         backgroundColor: '#6bbaa7',
     },
+    imageForm: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: 40,
+        height: 150,
+        width: 150,
+        resizeMode: 'cover',
+    },
+
+    // LAYOUT COMPONENTS
+        // BACKGROUNDS
+    fondImage: {
+        opacity: 0.9,
+        width: Dimensions.get('window').width,
+    },
+    fondCol: {
+    },
+    addBck: {
+        backgroundColor: 'rgba(255,255,255, 0.9)',
+        padding: 25,
+    },
+        // Buttons (add, update, edit, delete and "others")
     buttonRight: {
         justifyContent: 'right',
         alignItems: 'center',
         marginRight: 1,
     },
+    buttonStyle: {
+        width: 50,
+        height: 50,
+        borderRadius: 100,
+        backgroundColor: '#6BBAA7',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    buttonContainerStyle: {
+        marginLeft: 'auto',
+        marginRight: 20,
+        marginBottom: 20,
+        color: 'white',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    buttonCouleur: {
+        width: 20,
+        height: 20,
+        borderRadius: 100,
+        marginTop: 20,
+        marginLeft: 10,
+    },
+    // ITEM LISTS
     listItem: {
         justifyContent: 'space-between',
         alignContent: 'center',
@@ -75,7 +112,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         width: Dimensions.get('window').width,
-    },    
+    },
     listTaches: {
         borderLeftWidth: 5,
         borderStyle: 'solid',
@@ -89,52 +126,22 @@ export const styles = StyleSheet.create({
         width: '90%',
         flex: 1,
         alignItems: 'center',
-        alignContent: 'center', 
-   
+        alignContent: 'center',
+
     },
     listTache: {
         flex: 1,
         alignItems: 'center',
-        alignContent: 'center', 
-   
-    },
-    fondCol: {
+        alignContent: 'center',
+
     },
     listCol: {
         flex: 1,
         alignItems: 'center',
-        alignContent: 'center', 
+        alignContent: 'center',
         width: Dimensions.get('window').width,
     },
-    titleCol : {
-        margin: 5,
-        marginTop: 10,
-        marginBottom: 30,
-    },
-    textList: {
-        alignContent: 'center',
-        alignItems: 'center',
-        maxWidth: 180,
-    },
-    buttonStyle: {
-        width: 50,
-        height: 50,
-        borderRadius: 100, 
-        backgroundColor: '#6BBAA7',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center'
-    },
-    buttonContainerStyle: {
-        marginLeft: 'auto' ,
-        marginRight: 20,
-        marginBottom: 20,
-        color:'white',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center'
-    }, 
-    listTableau : {
+    listTableau: {
         borderWidth: 1,
         borderColor: '#e4d8f8',
         backgroundColor: 'rgba(255,255,255,0.6)',
@@ -151,7 +158,23 @@ export const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         marginTop: 15,
-    }, 
+    },
+    draggable: {
+        height: '90%'
+    },
+
+        // TITLES AND TEXTS
+    titleCol: {
+        margin: 5,
+        marginTop: 10,
+        marginBottom: 30,
+    },
+    textList: {
+        alignContent: 'center',
+        alignItems: 'center',
+        maxWidth: 180,
+    },
+
     h1: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -169,36 +192,44 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 25
     },
-    addBck : {
-        backgroundColor: 'rgba(255,255,255, 0.9)',
-        padding: 25,
-    },
+
+        // DESCRIPTIONS
     description: {
         fontStyle: 'italic',
         fontSize: 13,
         textAlign: 'center'
-    }, 
+    },
     contentDescription: {
         padding: 10,
         textAlign: 'justify',
-    }, 
-    taskColor : {
+    },
+    taskColor: {
         justifyContent: 'center',
         alignContent: 'stretch',
     },
-    buttonCouleur: {
-        width: 20,
-        height: 20,
-        borderRadius: 100,
-        marginTop: 20,
-        marginLeft: 10,
-    }, 
-    imageTache : { 
-        width: 100, 
-        height: 100, 
+
+        // "OTHERS" images (content, layouts and others)
+    imageTache: {
+        width: 100,
+        height: 100,
         alignSelf: 'center',
         marginTop: 25,
         marginBottom: 10,
         borderRadius: 2
-    }
+    },
+    viewImage: {
+        alignSelf: 'center',
+        marginTop: 20,
+    },
+    imageAddUpdt: {
+        width: 150,
+        height: 150,
+        marginBottom: 10,
+    },
+    textImage: {
+        alignSelf: 'center',
+        textDecorationLine: 'underline',
+        textDecorationColor: '#6d648b',
+        color: '#6d648b'
+    },
 });

@@ -3,37 +3,37 @@ import { Alert, FlatList, ImageBackground, ScrollView, View } from "react-native
 import { Button } from "@rneui/themed";
 import { getAllColonnes, createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
-import {styles} from "../styles";
+import { styles } from "../styles";
 import { Colonne } from "./colonne";
 
 const keyExtractor = (item, index) => item.id
 
-export function ColonneList({navigation}) {
+export function ColonneList({ navigation }) {
     const [colonnes, setColonnes] = useState([]);
-    const {user, tableView} = useContext(TrelloContext)
+    const { user, tableView } = useContext(TrelloContext)
     function handleClick() {
-        navigation.push("Ajouter une colonne", {setColonnes: setColonnes})
+        navigation.push("Ajouter une colonne", { setColonnes: setColonnes })
     }
     useEffect(() => {
-        getAllColonnes(user.uid, tableView.id ).then(data => {
+        getAllColonnes(user.uid, tableView.id).then(data => {
             setColonnes([...data])
-        }).catch(err => console.log(err))
+        }).catch(err => Alert.alert(err))
     }, []);
 
     const renderItem = ({ item }) => {
-        return <Colonne item={item} navigation={navigation} modif={setColonnes}/>
+        return <Colonne item={item} navigation={navigation} modif={setColonnes} />
     }
 
     return (
         <>
-            <View style={{flex: 1}}>
-                <ImageBackground 
-                    source={require('../assets/gradientApp.png')} 
-                    resizeMode="cover" style={{flex: 1}}
+            <View style={{ flex: 1 }}>
+                <ImageBackground
+                    source={require('../assets/gradientApp.png')}
+                    resizeMode="cover" style={{ flex: 1 }}
                 >
-                    <FlatList 
-                        keyExtractor={keyExtractor} 
-                        data={colonnes} 
+                    <FlatList
+                        keyExtractor={keyExtractor}
+                        data={colonnes}
                         renderItem={renderItem}
                     />
 
@@ -50,6 +50,6 @@ export function ColonneList({navigation}) {
                     />
                 </ImageBackground>
             </View>
-    </>
+        </>
     )
 }

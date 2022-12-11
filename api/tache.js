@@ -4,7 +4,7 @@ import { app } from "./app";
 
 const database = getDatabase(app);
 
-export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, tacheCouleur, image){
+export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, tacheCouleur, image) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
@@ -15,7 +15,7 @@ export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, 
                 if (numCol == -1) reject({ message: "id non trouvé sur la colonne" })
                 if (numTb == -1) reject({ message: "id non trouvé sur le tableau" })
                 if (!data[numTb].colonnes[numCol].taches) data[numTb].colonnes[numCol].taches = []
-                data[numTb].colonnes[numCol].taches.push({ id: uuidv4(), tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image})
+                data[numTb].colonnes[numCol].taches.push({ id: uuidv4(), tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image })
                 set(ref(database, 'tableaux/' + uid), data)
                 resolve(data[numTb].colonnes[numCol].taches)
             }).catch(err => {
@@ -28,12 +28,12 @@ export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, 
     })
 }
 
-export function getAllTaches(uid, idTableau, idColonne){
+export function getAllTaches(uid, idTableau, idColonne) {
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
-                const data = snapshot.val() ?? []; 
+                const data = snapshot.val() ?? [];
                 const numTb = data.findIndex((elem) => elem.id === idTableau)
                 const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
                 if (numCol == -1) reject({ message: "id non trouvé sur la colonne" })
@@ -47,48 +47,48 @@ export function getAllTaches(uid, idTableau, idColonne){
         catch (e) {
             reject(e)
         }
-    }) 
+    })
 }
 
-export function deleteTache(uid, idTableau, idColonne, idTache){
-    return new Promise((resolve, reject) =>{
+export function deleteTache(uid, idTableau, idColonne, idTache) {
+    return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val()
                 const numTb = data.findIndex((elem) => elem.id === idTableau)
-                const numCol = data[numTb].colonnes.findIndex((elem)=> elem.id === idColonne)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
                 const numTabs = data[numTb].colonnes[numCol].taches.findIndex((elem) => elem.id === idTache)
                 data[numTb].colonnes[numCol].taches.splice(numTabs, 1)
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes[numCol].taches)
-            }) 
+            })
         }
-        catch(e) {
+        catch (e) {
             reject(e)
         }
     })
 }
 
-export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tacheContent, tacheCouleur, image){
-    return new Promise((resolve, reject) =>{
+export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tacheContent, tacheCouleur, image) {
+    return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
             get(child(reference, `tableaux/${uid}`)).then((snapshot) => {
                 const data = snapshot.val()
                 const numTb = data.findIndex((elem) => elem.id === idTableau)
-                const numCol = data[numTb].colonnes.findIndex((elem)=> elem.id === idColonne)
+                const numCol = data[numTb].colonnes.findIndex((elem) => elem.id === idColonne)
                 if (numCol == -1) reject({ message: "id non trouvé dans la colonne" })
                 const numTabs = data[numTb].colonnes[numCol].taches.findIndex((elem) => elem.id === idTache)
                 if (numTabs == -1) reject({ message: "id non trouvé dans la liste de tâches" })
 
-                data[numTb].colonnes[numCol].taches[numTabs] = {...data[numTb].colonnes[numCol].taches[numTabs], tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image}
-                    
+                data[numTb].colonnes[numCol].taches[numTabs] = { ...data[numTb].colonnes[numCol].taches[numTabs], tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image }
+
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes[numCol].taches)
-            }) 
+            })
         }
-        catch(e) {
+        catch (e) {
             reject(e)
         }
     })

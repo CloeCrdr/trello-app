@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Button, Text } from "@rneui/themed";
-import { ImageBackground, StatusBar, View, TextInput, Image} from "react-native";
+import { ImageBackground, StatusBar, View, TextInput, Image } from "react-native";
 import { createTache } from "../api/tache";
 import { TrelloContext } from "../context/trello";
 import * as ImagePicker from 'expo-image-picker'
@@ -19,7 +19,7 @@ export function AddTache({ navigation, route }) {
             route.params.setTaches([...data])
             navigation.goBack()
         }).catch(err => {
-            console.log(err);
+            Alert.alert(err);
         })
     }
     const pickImage = async () => {
@@ -48,23 +48,23 @@ export function AddTache({ navigation, route }) {
                     style={{ flex: 1 }}
                 >
                     <View style={styles.addBck}>
-                    <Text style={styles.h1}>Nouvelle tâche</Text>
-                    <TextInput 
+                        <Text style={styles.h1}>Nouvelle tâche</Text>
+                        <TextInput
                             placeholder="Colonne"
-                            value={nameTache} 
-                            onChangeText={setNameTache} 
+                            value={nameTache}
+                            onChangeText={setNameTache}
                             style={styles.inputB}
                             mode="fat"
                             selectionColor="purple"
                             autoCapitalize='none'
-                        />                    
-                        <TextInput 
-                            placeholder="Description" 
-                            value={tacheContent} 
-                            onChangeText={setTacheContent} 
+                        />
+                        <TextInput
+                            placeholder="Description"
+                            value={tacheContent}
+                            onChangeText={setTacheContent}
                             style={
                                 [
-                                    styles.inputB, 
+                                    styles.inputB,
                                     {
                                         height: 150,
                                         textAlignVertical: 'top'
@@ -73,50 +73,55 @@ export function AddTache({ navigation, route }) {
                             mode="fat"
                             selectionColor="purple"
                             autoCapitalize='none'
-                            multiline = {true}
-                            numberOfLines = {4}
-                        />                    
-                        <TextInput 
-                            placeholder="Couleur de la tâche" 
-                            value={tacheCouleur} 
-                            onChangeText={setTacheCouleur} 
+                            multiline={true}
+                            numberOfLines={4}
+                        />
+                        <TextInput
+                            placeholder="Couleur de la tâche"
+                            value={tacheCouleur}
+                            onChangeText={setTacheCouleur}
                             style={styles.inputB}
                             mode="fat"
                             selectionColor="purple"
                             autoCapitalize='none'
-                        />                    
-                        <Text 
+                        />
+                        <Text
                             style={styles.description}
                         >
                             Cette option est réglée par défaut, mais vous pouvez la changer pour donner un style différent à la tâche.
                         </Text>
-                        {!image &&  <Button 
+                        {!image && <Button
                             mod="contained-tonal"
                             onPress={pickImage}
                             buttonStyle={{
                                 backgroundColor: '#b6A19E',
-                                width: 100, height: 100, 
+                                width: 100, height: 100,
                                 alignSelf: 'center',
                                 borderRadius: 100,
+                                marginTop: 15,
                             }}
-                        >                     
-                            Choisir une image       
+                        >
+                            Choisir une image
                         </Button>}
                         {image && <>
-                            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-                            <Button title="Effacer" onPress={deleteImage} />
+                            <View style={styles.viewImage}>
+                                <Image source={{ uri: image }} style={styles.imageAddUpdt} />
+                                <Text onPress={deleteImage} style={styles.textImage}>
+                                    Effacer l'image
+                                </Text>
+                            </View>
                         </>}
-                       
-                        
 
-                        <Button 
+
+
+                        <Button
                             onPress={handleClick}
                             buttonStyle={styles.buttonForm}
-                            style={{margin: 10}}
+                            style={{ margin: 10 }}
                         >
                             Créer la Tâche
                         </Button>
-                    </View>                    
+                    </View>
                     <StatusBar style="auto" />
                 </ImageBackground>
             </View>

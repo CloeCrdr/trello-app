@@ -14,7 +14,7 @@ export function AddTableau({ navigation, route }) {
             route.params.setTableaux([...data]);
             navigation.goBack()
         }).catch(err => {
-            console.log(err);
+            Alert.alert(err);
         })
     }
 

@@ -5,7 +5,7 @@ import { getAllTaches } from "../api/tache";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
 import { Tache } from "./tache";
-import DraggableFlatList, {ScaleDecorator,} from 'react-native-draggable-flatlist';
+import DraggableFlatList, { ScaleDecorator, } from 'react-native-draggable-flatlist';
 
 const keyExtractor = (item) => item.id
 
@@ -18,21 +18,21 @@ export function TacheList({ navigation }) {
     useEffect(() => {
         getAllTaches(user.uid, tableView.id, colonneView.id).then(data => {
             setTaches([...data])
-        }).catch(err => console.log(err))
+        }).catch(err => Alert.alert(err))
     }, []);
 
     const renderItem = ({ item, drag, isActive }) => {
         return (
             <ScaleDecorator>
-                <TouchableOpacity 
-                onLongPress={drag} 
-                disabled={isActive}>
+                <TouchableOpacity
+                    onLongPress={drag}
+                    disabled={isActive}>
                     <Tache item={item} navigation={navigation} modif={setTaches} />
                 </TouchableOpacity>
             </ScaleDecorator>
         )
     }
-    
+
     return (
         <>
             <View style={{ flex: 1 }}>
@@ -40,13 +40,15 @@ export function TacheList({ navigation }) {
                     source={require('../assets/gradientApp.png')}
                     resizeMode="cover" style={{ flex: 1 }}
                 >
-                    
+
                     <DraggableFlatList
                         keyExtractor={keyExtractor}
                         data={taches}
                         renderItem={renderItem}
-                        onDragEnd={({data}) => setTaches(data)}
+                        onDragEnd={({ data }) => setTaches(data)}
+                        style={styles.draggable}
                     />
+
 
                     <Button
                         mode="contained-tonal"

@@ -11,59 +11,59 @@ export function Connect() {
     const [login, setLogin] = useState("cloe13@hotmail.fr");
     const [mdp, setMdp] = useState("testtest");
     const { setUser } = useContext(TrelloContext);
-    function handleClick(){
+    function handleClick() {
         Keyboard.dismiss();
-        connectUser(login, mdp).then(data =>{
+        connectUser(login, mdp).then(data => {
             setUser(data)
         }).catch(err => {
             Alert.alert(err)
         })
     }
-    function clickGoogle(){
+    function clickGoogle() {
         connectGoogle()
     }
- 
-    return (
-        <View style={{flex: 1}}>
-            <ImageBackground source={require('../assets/gradientApp.png')} resizeMode="cover"
-            style={{flex: 1}}>
 
-            <SafeAreaView style={styles.form}>
-                <View style={styles.fondImage}>
-                    <Image 
-                        resizeMode='contain' 
-                        style={styles.imageForm}
-                        source={require('../assets/logo.png')}
+    return (
+        <View style={{ flex: 1 }}>
+            <ImageBackground source={require('../assets/gradientApp.png')} resizeMode="cover"
+                style={{ flex: 1 }}>
+
+                <SafeAreaView style={styles.form}>
+                    <View style={styles.fondImage}>
+                        <Image
+                            resizeMode='contain'
+                            style={styles.imageForm}
+                            source={require('../assets/logo.png')}
+                        />
+                    </View>
+                    <TextInput
+                        placeholder="Login"
+                        keyboardType="email-address"
+                        value={login} onChangeText={setLogin}
+                        style={styles.input}
+                        mode="fat"
+                        selectionColor="purple"
+                        autoCapitalize='none'
                     />
-                </View>
-                <TextInput 
-                    placeholder="Login" 
-                    keyboardType="email-address" 
-                    value={login} onChangeText={setLogin} 
-                    style={styles.input}
-                    mode="fat"
-                    selectionColor="purple"
-                    autoCapitalize='none'
-                />
-                <TextInput 
-                    placeholder="Mot de passe" 
-                    secureTextEntry={true} 
-                    value={mdp} 
-                    onChangeText={setMdp} 
-                    style={styles.input}
-                    autoCapitalize='none'
-                />
-                <Text style={styles.buttonForm}>
-                <Button 
-                    onPress={handleClick}
-                    mode="elevated"
-                    buttonStyle={styles.buttonForm}
-                >
-                    Connexion
-                </Button> 
-                </Text>
-                <StatusBar style="auto" />
-            </SafeAreaView>
+                    <TextInput
+                        placeholder="Mot de passe"
+                        secureTextEntry={true}
+                        value={mdp}
+                        onChangeText={setMdp}
+                        style={styles.input}
+                        autoCapitalize='none'
+                    />
+                    <Text style={styles.buttonForm}>
+                        <Button
+                            onPress={handleClick}
+                            mode="elevated"
+                            buttonStyle={styles.buttonForm}
+                        >
+                            Connexion
+                        </Button>
+                    </Text>
+                    <StatusBar style="auto" />
+                </SafeAreaView>
             </ImageBackground>
         </View>
     );

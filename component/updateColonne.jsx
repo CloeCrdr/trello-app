@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Button, Text } from "@rneui/themed";
-import { ImageBackground, StatusBar, View, TextInput} from "react-native";
+import { ImageBackground, StatusBar, View, TextInput } from "react-native";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
 import { updateColonne } from "../api/colonne";
@@ -14,7 +14,7 @@ export function UpdateColonne({ navigation, route }) {
             route.params.setColonnes([...data]);
             navigation.goBack()
         }).catch(err => {
-            console.log(err);
+            Alert.alert(err);
         })
     }
 

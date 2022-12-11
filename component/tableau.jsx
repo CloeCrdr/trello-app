@@ -10,7 +10,7 @@ import TouchableScale from 'react-native-touchable-scale';
 
 export function Tableau({ item, navigation, modif, route }) {
     const { user, setTableView } = useContext(TrelloContext);
-    const [showBox, setShowBox] = useState(true); 
+    const [showBox, setShowBox] = useState(true);
     function handleClick() {
         setTableView(item)
         navigation.push('Colonnes')
@@ -20,8 +20,8 @@ export function Tableau({ item, navigation, modif, route }) {
     }
     function handleDelete() {
         return Alert.alert(
-            `Supprimer \n "${item.nom}" ?`, 
-            `Êtes vous sûr.e de vouloir supprimer ce tableau ? \n Cela entraînera la suppression des colonnes et des tâches contenues dans celui-ci.`, 
+            `Supprimer \n "${item.nom}" ?`,
+            `Êtes vous sûr.e de vouloir supprimer ce tableau ? \n Cela entraînera la suppression des colonnes et des tâches contenues dans celui-ci.`,
             [
                 //bouton oui
                 {
@@ -30,13 +30,13 @@ export function Tableau({ item, navigation, modif, route }) {
                         deleteTable(user.uid, item.id).then((data) => {
                             modif([...data])
                         }).catch(err => {
-                            console.log(err);
+                            Alert.alert(err);
                         })
                     }
                 },
                 //bouton annuler
                 {
-                    text: "Annuler", 
+                    text: "Annuler",
                     onPress: () => {
                         setShowBox(false)
                     }
@@ -47,57 +47,57 @@ export function Tableau({ item, navigation, modif, route }) {
 
     return (
         <View style={{ width: Dimensions.get('window').width }}>
-            <ListItem 
+            <ListItem
                 containerStyle={styles.listTableau}
                 Component={TouchableScale}
-                friction={90} 
-                tension={100} 
+                friction={90}
+                tension={100}
                 activeScale={0.95}
             >
-            <View style={styles.listItem}>
-                <ListItem.Title 
-                style={styles.textList}
-                onPress={handleClick}>
-                    <Text>
-                        {item.nom}
+                <View style={styles.listItem}>
+                    <ListItem.Title
+                        style={styles.textList}
+                        onPress={handleClick}>
+                        <Text>
+                            {item.nom}
+                        </Text>
+                    </ListItem.Title>
+                    <Text style={styles.buttonRight}>
+                        <Button
+                            onPress={handleUpdate}
+                            icon={{
+                                name: 'edit',
+                                color: 'white',
+                            }}
+                            buttonStyle={{
+                                color: 'white',
+                                backgroundColor: '#FBA100',
+                                marginRight: 4,
+                                width: 50,
+                                height: 50,
+                                borderRadius: 100,
+                            }}
+                        />
+                        <Button
+                            onPress={handleDelete}
+                            icon={{
+                                name: 'delete',
+                                color: 'white',
+                            }}
+                            buttonStyle={{
+                                color: 'white',
+                                backgroundColor: '#6C648B',
+                                marginLeft: 4,
+                                width: 50,
+                                height: 50,
+                                borderRadius: 100,
+                            }}
+                        />
                     </Text>
-                </ListItem.Title>
-                <Text style={styles.buttonRight}>
-                    <Button
-                        onPress={handleUpdate}
-                        icon={{
-                            name: 'edit',
-                            color: 'white',
-                        }}
-                        buttonStyle={{
-                            color: 'white',
-                            backgroundColor: '#FBA100',
-                            marginRight: 4,
-                            width: 50,
-                            height: 50,
-                            borderRadius: 100,
-                        }}
-                    />
-                    <Button
-                        onPress={handleDelete}
-                        icon={{
-                            name: 'delete',
-                            color: 'white',
-                        }}
-                        buttonStyle={{
-                            color: 'white',
-                            backgroundColor: '#6C648B',
-                            marginLeft: 4,
-                            width: 50,
-                            height: 50,
-                            borderRadius: 100,
-                        }}
-                    />
-                </Text>
-            </View>
+                </View>
 
 
-        </ListItem>
-    </View>
+            </ListItem>
+        </View>
     )
 }

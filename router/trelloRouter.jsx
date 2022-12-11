@@ -22,229 +22,229 @@ import { logOutUser } from '../api/connect';
 const Stack = createStackNavigator();
 
 export function TrelloRouter() {
-    const {tableView, colonneView, tacheView} = useContext(TrelloContext)
+    const { tableView, colonneView, tacheView } = useContext(TrelloContext)
     return (
-        
-         <NavigationContainer>
+
+        <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen 
-                    name="Mes Tableaux" 
-                    component={TableauList}     
-                    options={{
-                        headerRight: () => (
-                          <Button
-                            onPress={() => logOutUser()}
-                            title=""
-                            icon={{
-                                name: 'logout',
-                                color: '#8b6465',
-                                size: 25,
-                            }}
-                            // buttonColor='white'
-                            buttonStyle={{
-                                backgroundColor: 'transparent'
-                            }}
-                          />
-                        ),
-                     }}  
-                />
-                <Stack.Screen 
-                    name="Ajouter un tableau" 
-                    component={AddTableau} 
+                <Stack.Screen
+                    name="Mes Tableaux"
+                    component={TableauList}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
                     }}
                 />
-                <Stack.Screen 
-                    name="Modifier un tableau" 
-                    component={UpdateTableau} 
+                <Stack.Screen
+                    name="Ajouter un tableau"
+                    component={AddTableau}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
+                    }}
+                />
+                <Stack.Screen
+                    name="Modifier un tableau"
+                    component={UpdateTableau}
+                    options={{
+                        headerRight: () => (
+                            <Button
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
+                            />
+                        ),
                     }}
                 />
 
-                <Stack.Screen 
-                    name="Colonnes" 
+                <Stack.Screen
+                    name="Colonnes"
                     options={{
                         title: 'Colonnes de "' + tableView.nom + '"',
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
-                    }} 
-                    component={ColonneList}  
+                        ),
+                    }}
+                    component={ColonneList}
                 />
-                <Stack.Screen 
-                    name="Ajouter une colonne" 
-                    component={AddColonne} 
+                <Stack.Screen
+                    name="Ajouter une colonne"
+                    component={AddColonne}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
                     }}
                 />
-                <Stack.Screen 
-                    name="Modifier une colonne" 
-                    component={UpdateColonne} 
+                <Stack.Screen
+                    name="Modifier une colonne"
+                    component={UpdateColonne}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
                     }}
                 />
 
-                <Stack.Screen 
-                    name="Tâches" 
+                <Stack.Screen
+                    name="Tâches"
                     options={{
                         title: 'Tâches de "' + colonneView.colonne + '"',
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
-                    }} 
-                    component={TacheList} 
+                        ),
+                    }}
+                    component={TacheList}
                 />
-                <Stack.Screen 
-                    name="Ajouter une tâche" 
-                    component={AddTache} 
+                <Stack.Screen
+                    name="Ajouter une tâche"
+                    component={AddTache}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
                     }}
                 />
-                <Stack.Screen 
-                    name="Modifier une tâche" 
-                    component={UpdateTache} 
+                <Stack.Screen
+                    name="Modifier une tâche"
+                    component={UpdateTache}
                     options={{
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
+                        ),
                     }}
                 />
 
-                <Stack.Screen 
-                    name="Ma tâche" 
+                <Stack.Screen
+                    name="Ma tâche"
                     options={{
                         title: tacheView.tache,
                         headerRight: () => (
                             <Button
-                              onPress={() => logOutUser()}
-                              title=""
-                              icon={{
-                                  name: 'logout',
-                                  color: '#8b6465',
-                                  size: 25,
-                              }}
-                              // buttonColor='white'
-                              buttonStyle={{
-                                  backgroundColor: 'transparent'
-                              }}
+                                onPress={() => logOutUser()}
+                                title=""
+                                icon={{
+                                    name: 'logout',
+                                    color: '#8b6465',
+                                    size: 25,
+                                }}
+                                // buttonColor='white'
+                                buttonStyle={{
+                                    backgroundColor: 'transparent'
+                                }}
                             />
-                          ),
-                    }} 
-                    component={TacheView} 
+                        ),
+                    }}
+                    component={TacheView}
                 />
-            </Stack.Navigator> 
-         </NavigationContainer>
+            </Stack.Navigator>
+        </NavigationContainer>
 
     );
 }

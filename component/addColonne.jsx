@@ -15,7 +15,7 @@ export function AddColonne({ navigation, route }) {
             route.params.setColonnes([...data])
             navigation.goBack()
         }).catch(err => {
-            console.log(err);
+            Alert.alert(err);
         })
     }
 

@@ -8,22 +8,21 @@ import { styles } from "../styles";
 import { deleteTache } from "../api/tache";
 
 export function Tache({ item, navigation, modif, route }) {
-    const { user, tableView, colonneView, setTacheView} = useContext(TrelloContext);
-    const [showBox, setShowBox] = useState(true); 
+    const { user, tableView, colonneView, setTacheView } = useContext(TrelloContext);
+    const [showBox, setShowBox] = useState(true);
 
     function handleClick() {
         setTacheView(item)
-        console.log(item)
-        navigation.push('Ma tâche', {idTache: item.id, nomTache: item.tache, contentTache : item.content, couleurTache: item.couleur})
+        navigation.push('Ma tâche', { idTache: item.id, nomTache: item.tache, contentTache: item.content, couleurTache: item.couleur, image: item.image })
     }
     function handleUpdate() {
         setTacheView(item)
-        navigation.push("Modifier une tâche", {idTache: item.id, nomTache: item.tache, contentTache : item.content, couleurTache : item.couleur, setTaches: modif}) 
+        navigation.push("Modifier une tâche", { idTache: item.id, nomTache: item.tache, contentTache: item.content, couleurTache: item.couleur, image: item.image, setTaches: modif })
     }
     function handleDelete() {
         return Alert.alert(
-            `Supprimer \n "${item.tache}" ?`, 
-            `Êtes vous sûr.e de vouloir supprimer cette tâche ?`, 
+            `Supprimer \n "${item.tache}" ?`,
+            `Êtes vous sûr.e de vouloir supprimer cette tâche ?`,
             [
                 //bouton oui
                 {
@@ -32,13 +31,13 @@ export function Tache({ item, navigation, modif, route }) {
                         deleteTache(user.uid, tableView.id, colonneView.id, item.id).then((data) => {
                             modif([...data])
                         }).catch(err => {
-                            console.log(err);
+                            Alert.alert(err);
                         })
                     }
                 },
                 //bouton annuler
                 {
-                    text: "Annuler", 
+                    text: "Annuler",
                     onPress: () => {
                         setShowBox(false)
                     }
@@ -50,27 +49,27 @@ export function Tache({ item, navigation, modif, route }) {
 
     return (
         <View style={{ width: Dimensions.get('window').width }}>
-            <ListItem 
-                bottomDivider 
+            <ListItem
+                bottomDivider
                 containerStyle={[
-                    {borderLeftColor: `${item.couleur}`},
+                    { borderLeftColor: `${item.couleur}` },
                     styles.listTaches
-                ]}         
+                ]}
             >
                 <View style={styles.listTache}>
                     <View style={styles.titleCol}>
                         <ListItem.Title>
                             <Text
-                                style={[ styles.textList, {
+                                style={[styles.textList, {
                                     textShadowColor: `${item.couleur}`,
-                                    textShadowOffset: {width: 0, height: 0},
+                                    textShadowOffset: { width: 0, height: 0 },
                                     textShadowRadius: 1,
                                     elevation: 5
                                 }]}
                                 onPress={handleClick}>{item.tache}
                             </Text>
                         </ListItem.Title>
-                    </View>       
+                    </View>
                     <View>
                         <Text>
                             <Button
@@ -106,7 +105,7 @@ export function Tache({ item, navigation, modif, route }) {
                                 }}
                             />
                         </Text>
-                    </View>           
+                    </View>
                 </View>
 
 
