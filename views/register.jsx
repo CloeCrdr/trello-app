@@ -40,6 +40,7 @@ export function Register() {
                     value={login} 
                     onChangeText={setLogin} 
                     style={styles.input} 
+                    autoCapitalize='none'
                 />
                 <TextInput 
                     placeholder="Mot de passe" 
@@ -47,12 +48,14 @@ export function Register() {
                     value={mdp} 
                     onChangeText={setMdp} 
                     style={styles.input} 
+                    autoCapitalize='none'
                 />
                 <TextInput 
                     placeholder="Confirmer le mot de passe" 
                     secureTextEntry={true} value={confirm} 
                     onChangeText={setConfirm} 
                     style={styles.input} 
+                    autoCapitalize='none'
                 />
                 <Text style={styles.buttonForm}>
                 <Button 

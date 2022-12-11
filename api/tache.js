@@ -1,12 +1,10 @@
 import { uuidv4 } from "@firebase/util";
 import { child, get, getDatabase, onValue, ref, set } from "firebase/database";
 import { app } from "./app";
-import { getDownloadURL, getStorage, ref as refB, uploadBytes, } from "firebase/storage";
 
 const database = getDatabase(app);
-const storage = getStorage(app);
 
-export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, imageTache){
+export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, tacheCouleur, image){
     return new Promise((resolve, reject) => {
         try {
             const reference = ref(database);
@@ -17,7 +15,7 @@ export function createTache(uid, idTableau, idColonne, tacheName, tacheContent, 
                 if (numCol == -1) reject({ message: "id non trouvé sur la colonne" })
                 if (numTb == -1) reject({ message: "id non trouvé sur le tableau" })
                 if (!data[numTb].colonnes[numCol].taches) data[numTb].colonnes[numCol].taches = []
-                data[numTb].colonnes[numCol].taches.push({ id: uuidv4(), tache: tacheName, content: tacheContent, image: imageTache })
+                data[numTb].colonnes[numCol].taches.push({ id: uuidv4(), tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image})
                 set(ref(database, 'tableaux/' + uid), data)
                 resolve(data[numTb].colonnes[numCol].taches)
             }).catch(err => {
@@ -72,7 +70,7 @@ export function deleteTache(uid, idTableau, idColonne, idTache){
     })
 }
 
-export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tacheContent, imageTache){
+export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tacheContent, tacheCouleur, image){
     return new Promise((resolve, reject) =>{
         try {
             const reference = ref(database);
@@ -84,7 +82,7 @@ export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tache
                 const numTabs = data[numTb].colonnes[numCol].taches.findIndex((elem) => elem.id === idTache)
                 if (numTabs == -1) reject({ message: "id non trouvé dans la liste de tâches" })
 
-                data[numTb].colonnes[numCol].taches[numTabs] = {...data[numTb].colonnes[numCol].taches[numTabs], tache: tacheName, content: tacheContent, image: imageTache,}
+                data[numTb].colonnes[numCol].taches[numTabs] = {...data[numTb].colonnes[numCol].taches[numTabs], tache: tacheName, content: tacheContent, couleur: tacheCouleur, image: image}
                     
                 set(ref(database, 'tableaux/' + uid), data);
                 resolve(data[numTb].colonnes[numCol].taches)
@@ -96,27 +94,3 @@ export function updateTache(uid, idTableau, idColonne, idTache, tacheName, tache
     })
 }
 
-export function uploadFile(fich, nom) {
-    return new Promise((res, rej) => {
-        new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                resolve(xhr.response);
-            };
-            xhr.onerror = function (e) {
-                console.log(e);
-                reject(new TypeError("Network request failed"));
-            };
-            xhr.responseType = "blob";
-            xhr.open("GET", fich, true);
-            xhr.send(null);
-        }).then(blob => {
-            const fileRef = refB(storage, nom);
-            uploadBytes(fileRef, blob).then(snapshot => {
-                // We're done with the blob, close and release it 
-                blob.close();
-                res(getDownloadURL(fileRef))
-            })
-        }).catch(err => rej(err.message))
-    })
-}

@@ -1,5 +1,6 @@
 import { uuidv4 } from "@firebase/util";
 import { child, get, getDatabase, onValue, ref, set } from "firebase/database";
+import { Alert } from "react-native";
 import { app } from "./app";
 
 const database = getDatabase(app);
@@ -17,7 +18,7 @@ export function createColonne(uid, idTable, colonneName){
                 set(ref(database, 'tableaux/' + uid), data)
                 resolve(data[indexTable].colonnes)
             }).catch(err => {
-                console.log(err);
+                Alert.alert(err);
             });
         }
         catch (e) {

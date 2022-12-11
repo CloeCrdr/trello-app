@@ -75,6 +75,28 @@ export const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         width: Dimensions.get('window').width,
+    },    
+    listTaches: {
+        borderLeftWidth: 5,
+        borderStyle: 'solid',
+        borderRadius: 2,
+        width: Dimensions.get('window').width,
+        marginLeft: 25,
+        marginRight: 15,
+        marginTop: 15,
+        padding: 30,
+        backgroundColor: '#fff',
+        width: '90%',
+        flex: 1,
+        alignItems: 'center',
+        alignContent: 'center', 
+   
+    },
+    listTache: {
+        flex: 1,
+        alignItems: 'center',
+        alignContent: 'center', 
+   
     },
     fondCol: {
     },
@@ -150,5 +172,33 @@ export const styles = StyleSheet.create({
     addBck : {
         backgroundColor: 'rgba(255,255,255, 0.9)',
         padding: 25,
+    },
+    description: {
+        fontStyle: 'italic',
+        fontSize: 13,
+        textAlign: 'center'
+    }, 
+    contentDescription: {
+        padding: 10,
+        textAlign: 'justify',
+    }, 
+    taskColor : {
+        justifyContent: 'center',
+        alignContent: 'stretch',
+    },
+    buttonCouleur: {
+        width: 20,
+        height: 20,
+        borderRadius: 100,
+        marginTop: 20,
+        marginLeft: 10,
+    }, 
+    imageTache : { 
+        width: 100, 
+        height: 100, 
+        alignSelf: 'center',
+        marginTop: 25,
+        marginBottom: 10,
+        borderRadius: 2
     }
 });

@@ -35,6 +35,7 @@ export function AddTableau({ navigation, route }) {
                             style={styles.inputB}
                             mode="fat"
                             selectionColor="purple"
+                            autoCapitalize='none'
                         />
                         <Button
                             onPress={handleClick}

@@ -8,8 +8,8 @@ import { LogGoogle } from "../component/google";
 import { LogFacebook } from "../component/facebook";
 
 export function Connect() {
-    const [login, setLogin] = useState("");
-    const [mdp, setMdp] = useState("");
+    const [login, setLogin] = useState("cloe13@hotmail.fr");
+    const [mdp, setMdp] = useState("testtest");
     const { setUser } = useContext(TrelloContext);
     function handleClick(){
         Keyboard.dismiss();
@@ -43,6 +43,7 @@ export function Connect() {
                     style={styles.input}
                     mode="fat"
                     selectionColor="purple"
+                    autoCapitalize='none'
                 />
                 <TextInput 
                     placeholder="Mot de passe" 
@@ -50,6 +51,7 @@ export function Connect() {
                     value={mdp} 
                     onChangeText={setMdp} 
                     style={styles.input}
+                    autoCapitalize='none'
                 />
                 <Text style={styles.buttonForm}>
                 <Button 

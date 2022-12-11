@@ -36,6 +36,7 @@ export function AddColonne({ navigation, route }) {
                             style={styles.inputB}
                             mode="fat"
                             selectionColor="purple"
+                            autoCapitalize='none'
                         />
                         <Button
                             onPress={handleClick}

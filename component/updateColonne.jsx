@@ -28,13 +28,14 @@ export function UpdateColonne({ navigation, route }) {
                 >
                     <View style={styles.addBck}>
                         <Text style={styles.h1}>Modifier la colonne </Text>
-                        <Text style={styles.h2}>{nameColonne} </Text>
+                        <Text style={styles.h2}>{colonneView.colonne} </Text>
                         <TextInput
                             value={nameColonne}
                             onChangeText={setNameColonne}
                             style={styles.inputB}
                             mode="fat"
                             selectionColor="purple"
+                            autoCapitalize='none'
                         />
                         <Button
                             onPress={handleClick}

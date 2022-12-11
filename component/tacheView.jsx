@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { Text } from "@rneui/themed";
+import { Button, Icon, Text } from "@rneui/themed";
 import { getSingleTache } from "../api/singleTache";
 import { TrelloContext } from "../context/trello";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, View, Image } from "react-native";
+import { styles } from "../styles";
 
 export function TacheView({ navigation }) {
     const [tache, setTache] = useState([])
@@ -10,6 +11,7 @@ export function TacheView({ navigation }) {
 
     useEffect(() => {
         getSingleTache(user.uid, tableView.id, colonneView.id, tacheView.id).then(data => {
+            console.log('hello world', data)
             setTache(data)
         }).catch(err => console.log(err))
     }, []);
@@ -26,9 +28,23 @@ export function TacheView({ navigation }) {
                     resizeMode="cover"
                     style={{ flex: 1 }}
                 >
-                    <Text>
-                        {tache.tache}
-                    </Text>
+                    <View style={styles.addBck}>
+                        <View>
+                            <Text style={styles.h1}>
+                            {tache.tache}
+                            </Text>
+                            <Text style={styles.contentDescription}>
+                                {tache.content}
+                            </Text>
+                        </View>
+                        <Text style={styles.taskColor}>
+                            <Text>Couleur de la tâche :</Text>
+                            <Button buttonStyle={[styles.buttonCouleur,{backgroundColor: `${tache.couleur}`}]}/>
+                        </Text>
+                        
+                        <Image source={{ uri: tache.image }} style={[styles.imageTache, {borderColor: `${tache.couleur}`}]} />
+                    </View>
+                    
                 </ImageBackground>
             </View>
         </>

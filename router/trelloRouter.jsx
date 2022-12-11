@@ -17,6 +17,9 @@ import { AddTache } from '../component/addTache';
 import { UpdateColonne } from '../component/updateColonne';
 import { UpdateTache } from '../component/updateTache';
 import { TacheView } from '../component/tacheView';
+import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
+import { View } from 'react-native';
+import { Text } from '@rneui/themed';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +34,7 @@ export function TrelloRouter() {
                 <Stack.Screen name="Ajouter un tableau" component={AddTableau} />
                 <Stack.Screen name="Modifier un tableau" component={UpdateTableau} />
 
-                <Stack.Screen name="Colonnes" options={{title: 'Tableau " ' + tableView.nom + '"'}} component={ColonneList} />
+                <Stack.Screen name="Colonnes" options={{title: 'Tableau "' + tableView.nom + '"'}} component={ColonneList}  />
                 <Stack.Screen name="Ajouter une colonne" component={AddColonne} />
                 <Stack.Screen name="Modifier une colonne" component={UpdateColonne} />
 
