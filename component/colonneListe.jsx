@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { Alert, FlatList, ImageBackground, ScrollView, View } from "react-native";
+import { Alert, FlatList, ImageBackground, ScrollView, TouchableOpacity, View } from "react-native";
 import { Button } from "@rneui/themed";
 import { getAllColonnes, createColonne } from "../api/colonne";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
 import { Colonne } from "./colonne";
+import * as Animatable from 'react-native-animatable'
 
 const keyExtractor = (item, index) => item.id
 
@@ -20,8 +21,23 @@ export function ColonneList({ navigation }) {
         }).catch(err => Alert.alert(err))
     }, []);
 
-    const renderItem = ({ item }) => {
-        return <Colonne item={item} navigation={navigation} modif={setColonnes} />
+    const renderItem = ({ item, index}) => {
+        return (
+            <Animatable.View
+                animation="fadeInUp"
+                duration={1000}
+                delai={index * 300}
+            >
+                <TouchableOpacity>
+                    <Colonne 
+                        item={item} 
+                        navigation={navigation} 
+                        modif={setColonnes} 
+                    />
+                </TouchableOpacity>
+            </Animatable.View>
+        
+        )
     }
 
     return (
@@ -35,6 +51,8 @@ export function ColonneList({ navigation }) {
                         keyExtractor={keyExtractor}
                         data={colonnes}
                         renderItem={renderItem}
+                        showsVerticalScrollIndicator={false}
+
                     />
 
                     <Button

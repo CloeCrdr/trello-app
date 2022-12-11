@@ -7,6 +7,8 @@ import { styles } from "../styles";
 import { Tache } from "./tache";
 import DraggableFlatList, { ScaleDecorator, } from 'react-native-draggable-flatlist';
 
+import * as Animatable from 'react-native-animatable'
+
 const keyExtractor = (item) => item.id
 
 export function TacheList({ navigation }) {
@@ -21,8 +23,13 @@ export function TacheList({ navigation }) {
         }).catch(err => Alert.alert(err))
     }, []);
 
-    const renderItem = ({ item, drag, isActive }) => {
+    const renderItem = ({ item, drag, isActive, index }) => {
         return (
+            <Animatable.View
+                animation="fadeInUp"
+                duration={1000}
+                delai={index * 300}
+            >
             <ScaleDecorator>
                 <TouchableOpacity
                     onLongPress={drag}
@@ -30,6 +37,7 @@ export function TacheList({ navigation }) {
                     <Tache item={item} navigation={navigation} modif={setTaches} />
                 </TouchableOpacity>
             </ScaleDecorator>
+            </Animatable.View>
         )
     }
 
