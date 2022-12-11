@@ -12,7 +12,6 @@ export function UpdateTache({ navigation, route }) {
     const [contentTache, setContentTache] = useState(route.params.contentTache);
     const [couleurTache, setCouleurTache] = useState(route.params.couleurTache);
     const [image, setImage] = useState(route.params.image);
-    console.log(route.params)
     const { user, tableView, colonneView, tacheView } = useContext(TrelloContext);
 
     function handleClick() {
@@ -20,7 +19,7 @@ export function UpdateTache({ navigation, route }) {
             route.params.setTaches([...data]);
             navigation.goBack()
         }).catch(err => {
-            console.log(err);
+            Alert.alert(err);
         })
     }
     const pickImage = async () => {
