@@ -7,7 +7,7 @@
 **Other option w/ Yarn** - yarn install 
 
 ## Launch application
-##### *on IOS only*
+##### *tested on IOS only*
 
 npx expo start 
 
@@ -17,20 +17,20 @@ npx expo start
 ##### Forms
 - Login, Connection, and Logout Button on Stack Navigation
 
-#### CRUDS
+##### CRUDS
 - TABLES : create, read, update, delete
 - COLUMNS : create, read, update, delete
 - TASKS : create, read, update, delete + task view 
 
-#### Navigations
+##### Navigations
 - Tab navigation and Stack navigation 
 
-#### Animation 
+##### Animation 
 - Tables : TouchableScale (on tableau.jsx)
 - Columns : FadeInUp (on colonneListe.jsx)
 - Tasks : FadeInUp and Reordering (on tacheListe.jsx)
 
-#### Design 
+##### Design 
 - ImageBackground on each page ; 
 - Differents screens for each item (table, column, task and view task)
 - Color Palette : https://static-cse.canva.com/blob/569483/websitecolorschemesimage19.jpg
