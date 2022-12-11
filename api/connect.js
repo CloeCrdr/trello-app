@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut,  sendSignInLinkToEmail} from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, sendSignInLinkToEmail} from 'firebase/auth';
 import { app } from "./app"; 
 
 
@@ -37,26 +37,21 @@ export function connectUser(email, password) {
     })
 }
 
-// export function logoutUser(email, password){
-//     return new Promise((resolve, reject) => {
-//         signOut()
-//             .then(() => {
-//                 console.log('logged out')
-//                 // Signed in 
-//                 resolve(userCredential.user);
-//                 // ...
-//             })
-//             .catch((error) => {
-//                 const errorCode = error.code;
-//                 const errorMessage = error.message;
-//                 reject(errorMessage)
-//                 // ..
-//             });
-//     })
-// }
-export const logOut = async () => {
-    await firebase.auth().signOut();
-};
+export function logOutUser() {
+    return new Promise((resolve, reject) => {
+
+        signOut(auth)
+            .then(() => {
+                alert('Utilisateur déconnecté')
+            })
+            .catch((err) => {
+                const errMessage = err.message;
+                reject(errMessage)
+                // ..
+            });
+    })
+}
+
 export function LinkAuth(){
     
     return new Promise((resolve, reject) => {

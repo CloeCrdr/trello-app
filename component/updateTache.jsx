@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Button, Text } from "@rneui/themed";
-import { ImageBackground, StatusBar, View, TextInput, Image} from "react-native";
+import { ImageBackground, StatusBar, View, TextInput, Image, ScrollView} from "react-native";
 import { TrelloContext } from "../context/trello";
 import { updateTache } from "../api/tache";
 import {styles} from "../styles";
@@ -44,6 +44,7 @@ export function UpdateTache({navigation, route}) {
                     resizeMode="cover" 
                     style={{flex: 1}}
                 >
+                    <ScrollView>
                     <View style={styles.addBck}>
                         <Text style={styles.h1}>Modifier la tâche </Text>
                         <Text style={styles.h2}>{tacheView.tache} </Text>
@@ -117,6 +118,7 @@ export function UpdateTache({navigation, route}) {
                             Modifier la tâche
                         </Button>
                     </View>
+                    </ScrollView>
                     <StatusBar style="auto" />
                 </ImageBackground>
             </View>

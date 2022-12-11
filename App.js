@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import { TrelloContext } from './context/trello';
 import { TrelloRouter } from './router/trelloRouter';
 import { ConnectRouter } from './router/connectRouter';
-import  {LinearGradient} from 'react-native-linear-gradient'
+import  {getAuth} from 'firebase/auth'
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -11,6 +11,21 @@ export default function App() {
   const [colonneView, setColonneView] = useState("");
   const [tacheView, setTacheView] = useState("");
   const [singleView, setSingleView] = useState("")
+  const [initializing, setInitializing] = useState(true);
+
+   // Handle user state changes
+   function onAuthStateChanged(userChange) {
+    // setUser(user);
+    setUser({user: userChange})
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = getAuth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
   return (
 
     <TrelloContext.Provider value={{

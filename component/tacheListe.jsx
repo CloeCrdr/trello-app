@@ -1,16 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import { Alert, FlatList, ImageBackground, ScrollView, TouchableOpacity, View } from "react-native";
 import { Button } from "@rneui/themed";
-import { getAllColonnes, createColonne } from "../api/colonne";
 import { getAllTaches } from "../api/tache";
 import { TrelloContext } from "../context/trello";
 import { styles } from "../styles";
-import { Colonne } from "./colonne";
 import { Tache } from "./tache";
-import { Animated } from "react-native";
-import DraggableFlatList, {
-    ScaleDecorator,
-  } from 'react-native-draggable-flatlist';
+import DraggableFlatList, {ScaleDecorator,} from 'react-native-draggable-flatlist';
 
 const keyExtractor = (item) => item.id
 
@@ -26,12 +21,6 @@ export function TacheList({ navigation }) {
         }).catch(err => console.log(err))
     }, []);
 
-    const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList);
-    const y = new Animated.Value(0);
-    const onScroll = Animated.event([{ nativeEvent: { contentOffset : { y } } }], {
-        useNativeDriver : true
-    })
-
     const renderItem = ({ item, drag, isActive }) => {
         return (
             <ScaleDecorator>
@@ -43,7 +32,7 @@ export function TacheList({ navigation }) {
             </ScaleDecorator>
         )
     }
-
+    
     return (
         <>
             <View style={{ flex: 1 }}>
