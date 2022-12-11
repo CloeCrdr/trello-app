@@ -41,7 +41,8 @@ export function TacheView({ navigation }) {
                             <Button buttonStyle={[styles.buttonCouleur, { backgroundColor: `${tache.couleur}` }]} />
                         </Text>
 
-                        <Image source={{ uri: tache.image }} style={[styles.imageTache, { borderColor: `${tache.couleur}` }]} />
+                        {tache.image ? <Image source={{ uri: tache.image }} style={[styles.imageTache, { borderColor: `${tache.couleur}` }]} /> :
+                            <></>}
                     </View>
 
                 </ImageBackground>

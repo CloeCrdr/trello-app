@@ -224,7 +224,7 @@ export function TrelloRouter() {
                 <Stack.Screen
                     name="Ma tâche"
                     options={{
-                        title: tacheView.tache,
+                        title: 'Voir une tâche',
                         headerRight: () => (
                             <Button
                                 onPress={() => logOutUser()}

@@ -36,6 +36,9 @@ export function UpdateTache({ navigation, route }) {
             setImage(result.assets[0].uri);
         }
     };
+    function deleteImage() {
+        setImage(null)
+    }
     return (
         <>
             <View style={{ flex: 1 }}>
@@ -66,7 +69,7 @@ export function UpdateTache({ navigation, route }) {
                                     [
                                         styles.inputB,
                                         {
-                                            height: 200,
+                                            height: 150,
                                             textAlignVertical: 'top'
                                         }
                                     ]
@@ -74,7 +77,6 @@ export function UpdateTache({ navigation, route }) {
                                 mode="fat"
                                 selectionColor="purple"
                                 autoCapitalize='none'
-
                                 multiline={true}
                                 numberOfLines={4}
                             />
@@ -88,23 +90,47 @@ export function UpdateTache({ navigation, route }) {
                                 autoCapitalize='none'
                             />
                             <Text style={styles.description}>
-                                Cette option est réglée par défaut, mais vous pouvez la changer.
+                                La couleur est réglée par défaut, mais vous pouvez la changer par un code hexadécimal ou le nom d'une couleur.
                             </Text>
                             <View style={styles.viewImage}>
-                                {image ? <Image
-                                    source={{ uri: image }}
-                                    style={styles.imageAddUpdt}
-                                /> : image ? <Image
-                                    source={{ uri: tacheView.image }}
-                                    style={styles.imageAddUpdt}
-                                /> : <Text></Text>
+                                {image ? <View>
+                                    <Image
+                                        source={{ uri: image }}
+                                        style={styles.imageAddUpdt}
+
+                                    />
+                                    <Text
+                                        onPress={pickImage}
+                                        style={styles.textImage}
+                                    >
+                                        Choisir une autre image
+                                    </Text>
+                                </View> : image ? <View>
+                                    <Image
+                                        source={{ uri: tacheView.image }}
+                                        style={styles.imageAddUpdt}
+                                    />
+                                    <Text style={styles.textImage}>
+                                        <Text
+                                            onPress={pickImage}
+                                        >
+                                            Choisir une autre image
+                                        </Text>
+                                        <Text
+                                            onPress={deleteImage}
+                                        >
+                                            Supprimer l'image
+                                        </Text>
+                                    </Text>
+                                </View> : <View>
+                                    <Text
+                                        onPress={pickImage}
+                                        style={styles.textImage}
+                                    >
+                                        Choisir une image
+                                    </Text>
+                                </View>
                                 }
-                                <Text
-                                    onPress={pickImage}
-                                    style={styles.textImage}
-                                >
-                                    Choisir une image
-                                </Text>
                             </View>
                             <Button
                                 onPress={handleClick}

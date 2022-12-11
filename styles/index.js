@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     // FORM ELEMENTS 
     input: {
         marginLeft: 'auto',
@@ -104,6 +103,13 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
     },
+    buttonsTacheList: {
+        marginRight: -20,
+        marginTop: -15,
+        marginBottom: -10,
+        flex: 1,
+        alignSelf: 'flex-end',
+    },
     // ITEM LISTS
     listItem: {
         justifyContent: 'space-between',
@@ -172,6 +178,7 @@ export const styles = StyleSheet.create({
     textList: {
         alignContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
         maxWidth: 180,
     },
 
@@ -192,15 +199,24 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 25
     },
+    contentTextTache: {
+        marginTop: 5,
+        fontStyle: 'italic'
+    },
 
         // DESCRIPTIONS
     description: {
         fontStyle: 'italic',
         fontSize: 13,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginRight: 22,
+        marginLeft: 22,
+        marginBottom: 5,
+        color: 'brown'
     },
     contentDescription: {
         padding: 10,
+        fontSize: 15,
         textAlign: 'justify',
     },
     taskColor: {

@@ -57,6 +57,35 @@ export function Tache({ item, navigation, modif, route }) {
                 ]}
             >
                 <View style={styles.listTache}>
+
+                <View style={styles.buttonsTacheList}>
+                        <Text>
+                            <Button
+                                onPress={handleUpdate}
+                                icon={{
+                                    name: 'edit',
+                                    color: '#FBA100',
+                                    size: 15,
+                                }}
+                                buttonStyle={{
+                                    color: 'white',
+                                    backgroundColor: 'transparent',
+                                }}
+                            />
+                            <Button
+                                onPress={handleDelete}
+                                icon={{
+                                    name: 'delete',
+                                    color: '#6C648B',
+                                    size: 15
+                                }}
+                                buttonStyle={{
+                                    color: 'white',
+                                    backgroundColor: 'transparent',
+                                }}
+                            />
+                        </Text>
+                    </View>
                     <View style={styles.titleCol}>
                         <ListItem.Title>
                             <Text
@@ -69,41 +98,8 @@ export function Tache({ item, navigation, modif, route }) {
                                 onPress={handleClick}>{item.tache}
                             </Text>
                         </ListItem.Title>
-                    </View>
-                    <View>
-                        <Text>
-                            <Button
-                                onPress={handleUpdate}
-                                icon={{
-                                    name: 'edit',
-                                    color: 'white',
-                                    size: 15,
-                                }}
-                                buttonStyle={{
-                                    color: 'white',
-                                    backgroundColor: '#FBA100',
-                                    marginRight: 4,
-                                    width: 40,
-                                    height: 40,
-                                    borderRadius: 100,
-                                }}
-                            />
-                            <Button
-                                onPress={handleDelete}
-                                icon={{
-                                    name: 'delete',
-                                    color: 'white',
-                                    size: 15
-                                }}
-                                buttonStyle={{
-                                    color: 'white',
-                                    backgroundColor: '#6C648B',
-                                    marginLeft: 4,
-                                    width: 40,
-                                    height: 40,
-                                    borderRadius: 100,
-                                }}
-                            />
+                        <Text numberOfLines={2} style={styles.contentTextTache}>
+                            {item.content}
                         </Text>
                     </View>
                 </View>

@@ -88,7 +88,7 @@ export function AddTache({ navigation, route }) {
                         <Text
                             style={styles.description}
                         >
-                            Cette option est réglée par défaut, mais vous pouvez la changer pour donner un style différent à la tâche.
+                             La couleur est réglée par défaut, mais vous pouvez la changer par un code hexadécimal ou le nom d'une couleur.
                         </Text>
                         {!image && <Button
                             mod="contained-tonal"
