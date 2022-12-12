@@ -15,7 +15,7 @@ npx expo start
 ### Specificities 
 
 ##### Forms
-- Login, Connection, and Logout Button on Stack Navigation
+- Login, Inscription, and Logout Button on Stack Navigation
 
 ##### CRUDS
 - TABLES : create, read, update, delete
